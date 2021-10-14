@@ -63,7 +63,7 @@ function App() {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
     }
-  }, [blockchain.smartContract, dispatch]);
+  }, [blockchain.account, blockchain.smartContract, dispatch]);
 
   useEffect(() => {
     fetchMetaDataForNFTS();
