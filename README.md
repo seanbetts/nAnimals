@@ -1,3 +1,3 @@
 # Welcome to 🐻 nAnimals 🐻
 
-This is the contracts and code for the nAniamals dApp
+This is the contract and code for the nAniamals dApp
