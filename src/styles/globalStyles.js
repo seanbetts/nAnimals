@@ -156,3 +156,7 @@ export const NFTSContainer = styled.div`
   margin: 10px;
   padding: 10px;
 `;
+
+export const Slider = styled.div`
+  width: 400px;
+`;
