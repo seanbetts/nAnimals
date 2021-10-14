@@ -88,79 +88,8 @@ function App() {
           </s.Row>
           <img src={nEggLogo} height={600} width={600} alt="nEgg Logo"/>
           <s.SpacerLarge />
+          <s.TextTitle>COMING SOON!</s.TextTitle>
         </s.Container>
-        {blockchain.account === "" || blockchain.smartContract === null ? (
-        <s.Container>
-          <s.TextSubTitle>PLEASE CONNECT YOUR METAMASK WALLET</s.TextSubTitle>
-          <s.SpacerSmall />
-          <s.StyledButton
-            onClick={(e) => {
-              e.preventDefault();
-              dispatch(connect());
-            }}
-          >
-            CONNECT
-          </s.StyledButton>
-          <s.SpacerSmall />
-          {blockchain.errorMsg !== "" ? (
-            <s.TextDescription>{blockchain.errorMsg}</s.TextDescription>
-          ) : null}
-        </s.Container>
-      ) : (
-        <s.Container>
-          <s.TextSubTitle>nEggs ARE 1 MATIC EACH TO MINT</s.TextSubTitle>
-          <s.SpacerSmall />
-          <s.TextSubTitle>YOU CAN MINT UP TO 10 nEggs PER WALLET</s.TextSubTitle>
-          <s.SpacerSmall />
-          <s.StyledButton
-            onClick={(e) => {
-              e.preventDefault();
-              mint(ipfsBaseUrl);
-            }}
-          >          
-          {loading ? (
-            <>
-            <s.TextSubTitle2>minting...</s.TextSubTitle2>
-            </>
-          ) : (
-          status !== "" ? (
-            <>
-            <s.TextSubTitle2>{status}</s.TextSubTitle2>
-            </>
-          ) : <s.TextSubTitle2>MINT A nEGG</s.TextSubTitle2>)}
-          </s.StyledButton>
-          <s.SpacerLarge />
-          {NFTS.length>0 &&
-            <s.Container>
-              <s.TextTitle>YOUR nEggs COLLECTION</s.TextTitle>
-              <s.SpacerSmall />
-              <s.NFTContainerBar>
-                <s.NFTContainer>
-                  {data.loading ? (
-                  <>
-                    <s.TextDescription2>loading...</s.TextDescription2>
-                  </>
-                  ) : (
-                    NFTS.map((nft, index) => {
-                      return(
-                          <s.NFTSContainer key={index}>
-                            <img 
-                              alt={nft.metaData.name}
-                              src={nft.metaData.image.replace('ipfs://', 'https://nanimals.mypinata.cloud/ipfs/')} 
-                              width={200}
-                            />
-                            <s.SpacerSmall />
-                            <s.TextSubTitle>{nft.metaData.name}</s.TextSubTitle>
-                          </s.NFTSContainer>
-                      );
-                    })
-                  )}
-                </s.NFTContainer>
-              </s.NFTContainerBar>
-            </s.Container>
-          }
-        </s.Container>
-        )}
         <s.Container>
           <s.SpacerLarge />
           <s.TextDescription>COPYRIGHT 2021 SEAN BETTS</s.TextDescription>
