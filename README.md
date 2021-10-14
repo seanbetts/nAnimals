@@ -1,19 +1,3 @@
-# Welcome to HashLips 👄
+# Welcome to 🐻 nAnimals 🐻
 
-All the code in these repos was created and explained by HashLips on the main YouTube channel.
-
-To find out more please visit:
-
-[📺 YouTube](https://www.youtube.com/channel/UC1LV4_VQGBJHTJjEWUmy8nA)
-
-[👄 Discord](https://discord.com/invite/qh6MWhMJDN)
-
-[💬 Telegram](https://t.me/hashlipsnft)
-
-[🐦 Twitter](https://twitter.com/hashlipsnft)
-
-[ℹ️ Website](https://hashlips.online/HashLips)
-
-# Base Dapp Frontend Layout
-
-A base project to start your dapp from.
+This is the contracts and code for the nAniamals dApp
