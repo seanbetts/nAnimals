@@ -204,6 +204,7 @@ function App() {
           <Slider dots trackStyle={{backgroundColor:'#FF3D94', height:5}} handleStyle={{backgroundColor: '#FF3D94', borderColor: '#FF3D94'}} activeDotStyle={{backgroundColor: '#FF3D94'}} dotStyle={{borderColor: '#FF3D94'}} min={1} max={10} defaultValue={1} marks={marks} />
           </s.Slider>
           <s.SpacerLarge />
+          <s.SpacerSmall />
           <s.StyledButton
             onClick={(e) => {
               e.preventDefault();
