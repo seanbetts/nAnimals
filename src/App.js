@@ -7,7 +7,7 @@ import twitter from "./images/twitter.png";
 
 function App() {
   useEffect(() => {
-    document.title = "nAnimals"
+    document.title = "nAnimals 🐻🐱🐶🐰"
   }, []);
 
   return (
