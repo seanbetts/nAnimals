@@ -18,6 +18,10 @@ function App() {
   const ipfsBaseUrl = "https://nanimals.mypinata.cloud/ipfs/QmW7w6sgyYNfxLUKSodbAqEmoaD8LYwdRcw8tmPFh69uTF/";
   // const numberOfTokens = 1;
 
+  useEffect(() => {
+    document.title = "nAnimals 🐻🐱🐶🐰"
+  }, []);
+
   function delay() {
     setTimeout(function(){ setStatus("MINT A nEGG"); }, 2000);
   }
