@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
@@ -42,7 +42,7 @@ function App() {
       });
   };
 
-  const fetchMetaDataForNFTS = () => {
+  const fetchMetaDataForNFTS = useCallback(() => {
     setNFTs([]);
     data.userTokens.forEach((nft) => {
       fetch(nft.uri)
@@ -57,7 +57,7 @@ function App() {
         console.log(err);
       });
     });
-  };
+  }, [data.userTokens]);
 
   useEffect(() => {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
@@ -67,7 +67,7 @@ function App() {
 
   useEffect(() => {
     fetchMetaDataForNFTS();
-  }, [data.userTokens]);
+  }, [fetchMetaDataForNFTS, data.userTokens]);
 
   return (
     <s.Screen>
