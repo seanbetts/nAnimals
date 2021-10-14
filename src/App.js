@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./App.css";
 import * as s from "./styles/globalStyles";
 import nEggLogo from "./images/nEggLogoTitle.png";
@@ -6,6 +6,10 @@ import discord from "./images/discord.png";
 import twitter from "./images/twitter.png";
 
 function App() {
+  useEffect(() => {
+    document.title = "nAnimals"
+  }, []);
+
   return (
     <s.Screen>
       <s.Container>
