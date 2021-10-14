@@ -100,7 +100,11 @@ function App() {
       label: <strong>10</strong>,
     }
   }
-  // const numberOfTokens = 1;
+  var numberOfTokens = 1;
+
+  function log(value) {
+    numberOfTokens = value;
+  }
 
   useEffect(() => {
     document.title = "nAnimals 🐻🐱🐶🐰"
@@ -201,7 +205,7 @@ function App() {
           <s.TextSubTitle>YOU CAN MINT UP TO 10 nEggs PER WALLET</s.TextSubTitle>
           <s.SpacerSmall />
           <s.Slider>
-          <Slider dots trackStyle={{backgroundColor:'#FF3D94', height:5}} handleStyle={{backgroundColor: '#FF3D94', borderColor: '#FF3D94'}} activeDotStyle={{backgroundColor: '#FF3D94'}} dotStyle={{borderColor: '#FF3D94'}} min={1} max={10} defaultValue={1} marks={marks} />
+          <Slider dots trackStyle={{backgroundColor:'#FF3D94', height:5}} handleStyle={{backgroundColor: '#FF3D94', borderColor: '#FF3D94'}} activeDotStyle={{backgroundColor: '#FF3D94'}} dotStyle={{borderColor: '#FF3D94'}} min={1} max={10} onChange={log} defaultValue={1} marks={marks} />
           </s.Slider>
           <s.SpacerLarge />
           <s.SpacerSmall />
