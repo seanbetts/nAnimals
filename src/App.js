@@ -6,7 +6,6 @@ import discord from "./images/discord.png";
 import twitter from "./images/twitter.png";
 
 function App() {
-
   return (
     <s.Screen>
       <s.Container>
