@@ -52,10 +52,14 @@ contract SmartContract is ERC721, ERC721Enumerable, Ownable {
 
     function getUserTokens(address _owner) public view returns(RenderUserToken[] memory) {
         uint256 ownerTokenCount = balanceOf(_owner);
+        uint256 counter = 0;
         RenderUserToken[] memory res = new RenderUserToken[](ownerTokenCount);
         for(uint256 i = 0; i < ownerTokenCount; i++) {
-            uint256 tokenId = tokenOfOwnerByIndex(_owner, i);
-            res[i] = RenderUserToken(tokenId, tokenURI(tokenId));
+            if(_exists(counter)) {
+                string memory uri = tokenURI(counter);
+                res[counter] = RenderUserToken(counter, uri);
+            }
+            counter++;
         }
         return res;
     }

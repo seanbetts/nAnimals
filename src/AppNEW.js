@@ -17,7 +17,6 @@ function App() {
   const [loading, setLoading] = useState (false);
   const [status, setStatus] = useState ("");
   const [NFTS, setNFTs] = useState ([]);
-  const ipfsBaseUrl = "https://nanimals.mypinata.cloud/ipfs/QmW7w6sgyYNfxLUKSodbAqEmoaD8LYwdRcw8tmPFh69uTF/";
   const marks= {
     1: {
       style: {
@@ -114,11 +113,11 @@ function App() {
     setTimeout(function(){ setStatus("MINT YOUR nEGGs"); }, 2000);
   }
 
-  const mint = (_uri) => {
+  const mint = (numberOfTokens) => {
     setLoading(true);
 
     blockchain.smartContract.methods
-      .mint(blockchain.account, _uri)
+      .mint(blockchain.account, numberOfTokens)
       .send({from: blockchain.account})
       .once("error", (err) => {
         console.log(err);
@@ -129,7 +128,7 @@ function App() {
         console.log(receipt);
         dispatch(fetchData(blockchain.account));
         setLoading(false);
-        setStatus("nEgg SUCCESSFULLY MINTED!");
+        setStatus("nEggs SUCCESSFULLY MINTED!");
         delay();
       });
   };
@@ -212,7 +211,7 @@ function App() {
           <s.StyledButton
             onClick={(e) => {
               e.preventDefault();
-              mint(ipfsBaseUrl);
+              mint(numberOfTokens);
             }}
           >          
           {loading ? (
@@ -239,6 +238,7 @@ function App() {
                   </>
                   ) : (
                     NFTS.map((nft, index) => {
+                      console.log(nft);
                       return(
                           <s.NFTSContainer key={index}>
                             <img 

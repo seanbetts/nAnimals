@@ -68,7 +68,7 @@ export const connect = () => {
           dispatch(connectFailed("Please change your wallet network to Polygon"));
         }
       } catch (err) {
-        dispatch(connectFailed("Something went wrong"));
+        dispatch(connectFailed("Something went wrong, please try again"));
       }
     } else {
       dispatch(connectFailed("Please install MetaMask"));
