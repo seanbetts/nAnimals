@@ -1,6 +1,7 @@
 const initialState = {
   loading: false,
   contractAddress: "Updating...",
+  owner: "",
   name: "",
   totalSupply: 0,
   mintPrice: 2000000000000000000,
@@ -26,6 +27,7 @@ const dataReducer = (state = initialState, action) => {
         loading: false,
         name: action.payload.name,
         contractAddress: action.payload.contractAddress,
+        owner: action.payload.owner,
         totalSupply: action.payload.totalSupply,
         maxMintSupply: action.payload.maxMintSupply,
         maxMintQuantity: action.payload.maxMintQuantity,

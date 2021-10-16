@@ -118,7 +118,12 @@ function App() {
 
     blockchain.smartContract.methods
       .mint(tokenNumber)
-      .send({from: blockchain.account})
+      .send({
+        gasLimit: (285000 * tokenNumber).toString(),
+        to: data.owner,
+        from: blockchain.account,
+        value: blockchain.web3.utils.toWei((data.mintPrice/1000000000000000000 * tokenNumber).toString(), "ether"),
+      })
       .once("error", (err) => {
         console.log(err);
         setLoading(false);

@@ -29,9 +29,13 @@ export const fetchData = (account) => {
         .getState()
         .blockchain.smartContract.methods.name()
         .call();
-        let contractAddress = await store
+      let contractAddress = await store
         .getState()
         .blockchain.smartContract.methods.contractAddress()
+        .call();
+      let owner = await store
+        .getState()
+        .blockchain.smartContract.methods.owner()
         .call();
       let userTokens = await store
         .getState()
@@ -58,6 +62,7 @@ export const fetchData = (account) => {
         fetchDataSuccess({
           name,
           contractAddress,
+          owner,
           userTokens,
           totalSupply,
           maxMintSupply,
