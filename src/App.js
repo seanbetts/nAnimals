@@ -227,6 +227,8 @@ function App() {
           </s.Slider>
           <s.SpacerLarge />
           <s.SpacerSmall />
+
+          {data.paused == false ? (
           <s.StyledButton
             onClick={(e) => {
               e.preventDefault();
@@ -242,8 +244,19 @@ function App() {
                 <>
                 <s.TextSubTitle2>{status}</s.TextSubTitle2>
                 </>
-            ) : <s.TextSubTitle2>MINT {mintNumber} nEGGs</s.TextSubTitle2>)}
+            ) : (<s.TextSubTitle2>MINT {mintNumber} nEGGs</s.TextSubTitle2>)
+          )}
           </s.StyledButton>
+          ) : (
+            <s.StyledButton2
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          >
+            <s.TextSubTitle2>MINTING PAUSED</s.TextSubTitle2>
+          </s.StyledButton2>
+          )}
+
           <s.SpacerSmall />
           <s.TextDescription>Please make sure you are connected to the right network (Polygon Mainnet) and the correct address ({data.contractAddress}).</s.TextDescription>
           <s.SpacerXSmall />
@@ -278,11 +291,33 @@ function App() {
                     })
                   )}
                 </s.NFTContainer>
+                <s.SpacerLarge />
               </s.NFTContainerBar>
             </s.Container>
           }
         </s.Container>
         )}
+        <s.SpacerLarge />
+        <s.NFTContainerBar>
+        <s.SpacerLarge />
+          <s.TextTitle2>ROADMAP</s.TextTitle2>
+          <s.SpacerXSmall />
+          <s.TextSubTitle3>STEP 1</s.TextSubTitle3>
+          <s.TextDescription3>We will be releasing {data.maxMintSupply} nEGGs to be minted. The minting cost will be {data.mintPrice/1000000000000000000} MATIC per nEGG and there will be a maximum mint of {data.maxMintQuantity} nEGGs per wallet</s.TextDescription3>
+          <s.SpacerLarge />
+          <s.TextSubTitle3>STEP 2</s.TextSubTitle3>
+          <s.TextDescription3>Once all {data.maxMintSupply} nEGGs have been minted the countdown will begin for the hatching of the 1st generation of nANIMALs. All current holders of nEggs will be given the <span role="img" aria-labelledby="egg">🥚</span>│OG nEGGs role and have access to new channels on the Discord server.</s.TextDescription3>
+           <s.SpacerLarge />
+          <s.TextSubTitle3>STEP 3</s.TextSubTitle3>
+          <s.TextDescription3>Once the countdown is over it's Hatching Time! Hatching 1 nEGG will cost {data.mintPrice/1000000000000000000} MATIC and will hatch 1 nANIMAL. The nEGG will be able to be re-hatched for future generations of nANIMALs. However, watch out - 10% of nANIMALs will die on hatching! (but the nEGG will remain intact).</s.TextDescription3>
+          <s.SpacerLarge />
+          <s.TextSubTitle3>STEP 4</s.TextSubTitle3>
+          <s.TextDescription3>When hatching begins for Generation 1, the countdown will begin for the hatching of the 2nd Generation of nANIMALs and the cycle will continue!</s.TextDescription3>
+          <s.SpacerLarge />
+          <s.TextSubTitle3>STEP 5</s.TextSubTitle3>
+          <s.TextDescription3>Rinse and repeat!</s.TextDescription3>
+          <s.SpacerLarge />
+        </s.NFTContainerBar>
         <s.Container>
           <s.SpacerLarge />
           <s.TextDescription>COPYRIGHT 2021 SEAN BETTS</s.TextDescription>

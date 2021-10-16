@@ -78,6 +78,15 @@ export const TextSubTitle2 = styled.p`
   font-weight: 1000;
 `;
 
+export const TextSubTitle3 = styled.p`
+  font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;  
+  color: var(--black);
+  font-size: 20px;
+  font-weight: 1000;
+  width: 750px;
+  text-align: left;
+`;
+
 export const TextDescription = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif; 
   color: var(--pink);
@@ -92,6 +101,13 @@ export const TextDescription2 = styled.p`
   color: var(--yellow);
   font-size: 20px;
   font-weight: 1000;
+`;
+export const TextDescription3 = styled.p`
+  font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif; 
+  color: var(--black);
+  font-size: 16px;
+  font-weight: 500;
+  width: 750px;
 `;
 
 export const StyledClickable = styled.div`
@@ -123,6 +139,19 @@ export const StyledButton = styled.button`
     transform: translateY(4px);
   }
 `;
+
+export const StyledButton2 = styled.button`
+  background-color: var(--pink);
+  color: black;
+  border: none;
+  width: 400px;
+  font-size: 20px;
+  font-weight: 1000;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0px;
+`;
+
 
 export const Row = styled.div`
   display: flex;
