@@ -9,9 +9,11 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract SmartContract is ERC721, ERC721Enumerable, Ownable {
     using Counters for Counters.Counter;
     using Strings for uint256;
+    
+    uint256 public maxMintAmount = 10;
     Counters.Counter _tokenIds;
+    
     mapping(uint256 => string) _tokenURIs;
-
     mapping (address => bool) public whitelisted;
     
     struct RenderUserToken {
@@ -35,13 +37,19 @@ contract SmartContract is ERC721, ERC721Enumerable, Ownable {
     }
 
     // public
-    function mint(address recipient, string memory uri) public payable returns(uint256) {
-        uint256 newId = _tokenIds.current();
-        string memory newUri = concat(uri, Strings.toString(newId+1));
-        _mint(recipient, newId);
-        _setTokenURI(newId, newUri);
-        _tokenIds.increment();
-        return newId;
+    // function mint(uint256 _mintAmount) public payable returns(uint256) {
+    function mint(uint256 _mintAmount) public payable {
+        require(_mintAmount > 0);
+        require(_mintAmount <= maxMintAmount);
+        string memory uri = "https://nanimals.mypinata.cloud/ipfs/QmW7w6sgyYNfxLUKSodbAqEmoaD8LYwdRcw8tmPFh69uTF/";
+        for (uint256 i = 0; i < _mintAmount; i++) {
+            uint256 newId = _tokenIds.current();
+            string memory newUri = concat(uri, Strings.toString(newId+1));
+            _mint(msg.sender, newId);
+            _setTokenURI(newId, newUri);
+            _tokenIds.increment();
+        }
+        // return newId;
     }
 
     function tokenURI(uint256 tokenId) public view virtual override returns(string memory) {
@@ -63,4 +71,6 @@ contract SmartContract is ERC721, ERC721Enumerable, Ownable {
     function supportsInterface(bytes4 interfaceId) public view virtual override(ERC721, ERC721Enumerable) returns (bool) {
         return super.supportsInterface(interfaceId);
     }
+
+    // only owner
 }
