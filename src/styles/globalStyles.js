@@ -57,6 +57,13 @@ export const TextTitle = styled.p`
   font-weight: 1000;
 `;
 
+export const TextTitle2 = styled.p`
+  font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;
+  color: var(--black);
+  font-size: 30px;
+  font-weight: 1000;
+`;
+
 export const TextSubTitle = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;  
   color: var(--pink);
@@ -76,6 +83,8 @@ export const TextDescription = styled.p`
   color: var(--pink);
   font-size: 14px;
   font-weight: 400;
+  width: 650px;
+  text-align: center;
 `;
 
 export const TextDescription2 = styled.p`
@@ -95,7 +104,7 @@ export const StyledButton = styled.button`
   background-color: var(--pink);
   color: black;
   border: none;
-  width: 350px;
+  width: 400px;
   font-size: 20px;
   font-weight: 1000;
   padding: 10px;
@@ -129,7 +138,7 @@ export const NFTContainerBar = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   background-color: var(--pink);
 `;
 

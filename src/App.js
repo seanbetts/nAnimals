@@ -16,6 +16,7 @@ function App() {
   const data = useSelector((state) => state.data);
   const [loading, setLoading] = useState (false);
   const [status, setStatus] = useState ("");
+  var [mintNumber, setMintNumber] = useState (1);
   const [NFTS, setNFTs] = useState ([]);
   const marks= {
     1: {
@@ -99,11 +100,9 @@ function App() {
       label: <strong>10</strong>,
     }
   }
-  var numberOfTokens = 1;
 
   function log(value) {
-    numberOfTokens = value;
-    console.log(numberOfTokens);
+    setMintNumber(value)
   }
 
   useEffect(() => {
@@ -111,25 +110,26 @@ function App() {
   }, []);
 
   function delay() {
-    setTimeout(function(){ setStatus("MINT YOUR nEGGs"); }, 2000);
+    setTimeout(function(){ setStatus(""); }, 2000);
   }
 
-  const mint = (numberOfTokens) => {
+  const mint = (tokenNumber) => {
     setLoading(true);
 
     blockchain.smartContract.methods
-      .mint(numberOfTokens)
+      .mint(tokenNumber)
       .send({from: blockchain.account})
       .once("error", (err) => {
         console.log(err);
         setLoading(false);
-        setStatus("ERROR - PLEASE TRY AGAIN!");
+        setStatus("ERROR - TRY MINTING AGAIN!");
+        delay();
       })
       .then((receipt) => {
         console.log(receipt);
         dispatch(fetchData(blockchain.account));
         setLoading(false);
-        setStatus("nEgg SUCCESSFULLY MINTED!");
+        setStatus(mintNumber + " nEGGs SUCCESSFULLY MINTED!");
         delay();
       });
   };
@@ -183,15 +183,17 @@ function App() {
         </s.Container>
         {blockchain.account === "" || blockchain.smartContract === null ? (
         <s.Container>
-          <s.TextSubTitle>PLEASE CONNECT YOUR METAMASK WALLET</s.TextSubTitle>
-          <s.SpacerSmall />
-          <s.StyledButton
-            onClick={(e) => {
-              e.preventDefault();
-              dispatch(connect());
-            }}
-          >
-            CONNECT
+            <s.TextSubTitle>TO MINT A nEGG</s.TextSubTitle>
+            <s.SpacerSmall />
+            <s.TextSubTitle>CONNECT TO THE POLYGON NETWORK</s.TextSubTitle>
+            <s.SpacerSmall />
+            <s.StyledButton
+                onClick={(e) => {
+                e.preventDefault();
+                dispatch(connect());
+                }}
+            >
+                CONNECT
           </s.StyledButton>
           <s.SpacerSmall />
           {blockchain.errorMsg !== "" ? (
@@ -200,9 +202,20 @@ function App() {
         </s.Container>
       ) : (
         <s.Container>
-          <s.TextSubTitle>nEggs ARE 1 MATIC EACH TO MINT</s.TextSubTitle>
-          <s.SpacerSmall />
-          <s.TextSubTitle>YOU CAN MINT UP TO 10 nEggs PER WALLET</s.TextSubTitle>
+          
+          {Number(data.totalSupply) === Number(data.maxMintSupply) ? (
+            <>
+            <s.TextTitle>ALL nEGGs ARE MINTED!</s.TextTitle>
+            <s.SpacerSmall />
+            <s.TextDescription><a target={"_blank"} rel="noopener noreferrer" href={"https://opensea.io/"}>VISIT OUR OFFICIAL COLLECTION ON OPENSEA TO BUY A nEGG</a></s.TextDescription>
+            </>
+          ) : (
+            <>
+            <s.TextTitle>{data.totalSupply}/{data.maxMintSupply} nEGGs MINTED</s.TextTitle>
+          <s.SpacerLarge />
+          <s.TextSubTitle>nEGGs ARE {data.mintPrice/1000000000000000000} MATIC EACH TO MINT (ex. gas fees)</s.TextSubTitle>
+          <s.SpacerLarge />
+          <s.TextSubTitle>YOU CAN MINT UP TO {data.maxMintQuantity} nEGGs PER WALLET</s.TextSubTitle>
           <s.SpacerSmall />
           <s.Slider>
           <Slider dots trackStyle={{backgroundColor:'#FF3D94', height:5}} handleStyle={{backgroundColor: '#FF3D94', borderColor: '#FF3D94'}} activeDotStyle={{backgroundColor: '#FF3D94'}} dotStyle={{borderColor: '#FF3D94'}} min={1} max={10} onChange={log} defaultValue={1} marks={marks} />
@@ -212,7 +225,7 @@ function App() {
           <s.StyledButton
             onClick={(e) => {
               e.preventDefault();
-              mint(numberOfTokens);
+              mint(mintNumber);
             }}
           >          
           {loading ? (
@@ -221,17 +234,24 @@ function App() {
             </>
           ) : (
           status !== "" ? (
-            <>
-            <s.TextSubTitle2>{status}</s.TextSubTitle2>
-            </>
-          ) : <s.TextSubTitle2>MINT YOUR nEGGs</s.TextSubTitle2>)}
+                <>
+                <s.TextSubTitle2>{status}</s.TextSubTitle2>
+                </>
+            ) : <s.TextSubTitle2>MINT {mintNumber} nEGGs</s.TextSubTitle2>)}
           </s.StyledButton>
-          <s.SpacerLarge />
+          <s.SpacerSmall />
+          <s.TextDescription>Please make sure you are connected to the right network (Polygon Mainnet) and the correct address ({data.contractAddress}).</s.TextDescription>
+          <s.SpacerXSmall />
+          <s.TextDescription>Please note: Once you make the purchase, you cannot undo this action.</s.TextDescription>
+          </>
+          )}
+          <s.SpacerMedium />
           {NFTS.length>0 &&
             <s.Container>
-              <s.TextTitle>YOUR nEggs COLLECTION</s.TextTitle>
-              <s.SpacerSmall />
               <s.NFTContainerBar>
+              <s.SpacerLarge />
+              <s.TextTitle2>YOUR nEGG COLLECTION</s.TextTitle2>
+              <s.SpacerSmall />
                 <s.NFTContainer>
                   {data.loading ? (
                   <>
@@ -262,7 +282,7 @@ function App() {
           <s.SpacerLarge />
           <s.TextDescription>COPYRIGHT 2021 SEAN BETTS</s.TextDescription>
           <s.SpacerSmall />
-          <s.TextDescription>CONTRACT: xxxxxxxxxxxxxxx</s.TextDescription>
+          <s.TextDescription>CONTRACT ADDRESS: {data.contractAddress}</s.TextDescription>
           <s.SpacerLarge />
         </s.Container>
     </s.Screen>

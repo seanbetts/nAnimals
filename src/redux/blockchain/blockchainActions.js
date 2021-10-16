@@ -1,6 +1,6 @@
 // constants
 import Web3 from "web3";
-import SmartContract from "../../contracts/SmartContract.json";
+import nAnimals from "../../contracts/nAnimals.json";
 // log
 import { fetchData } from "../data/dataActions";
 
@@ -43,10 +43,10 @@ export const connect = () => {
         const networkId = await window.ethereum.request({
           method: "net_version",
         });
-        const NetworkData = await SmartContract.networks[networkId];
+        const NetworkData = await nAnimals.networks[networkId];
         if (NetworkData) {
           const SmartContractObj = new web3.eth.Contract(
-            SmartContract.abi,
+            nAnimals.abi,
             NetworkData.address
           );
           dispatch(
