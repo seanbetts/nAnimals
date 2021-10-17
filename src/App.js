@@ -228,7 +228,7 @@ function App() {
           <s.SpacerLarge />
           <s.SpacerSmall />
 
-          {data.paused == false ? (
+          {data.mintingPaused === false ? (
           <s.StyledButton
             onClick={(e) => {
               e.preventDefault();
@@ -297,6 +297,20 @@ function App() {
           }
         </s.Container>
         )}
+        <s.SpacerLarge />
+        <s.NFTContainerBar>
+        <s.SpacerLarge />
+          <s.TextTitle2>ABOUT</s.TextTitle2>
+          <s.SpacerXSmall />
+          <s.TextDescription3>nANIMALs is a new generative NFT art project that will be minting exclusively on Polygon.</s.TextDescription3>
+          <s.SpacerSmall />
+          <s.TextDescription3>Our ambition for this project is not to take ourselves too seriously and to just enjoy the space. We're looking to build a relaxed community on Discord to hang out and there will be lots of fun to be had along the way!</s.TextDescription3>
+          <s.SpacerSmall />
+          <s.TextDescription3>Love & hugs,</s.TextDescription3>
+          <s.SpacerSmall />
+          <s.TextDescription3><span role="img" aria-labelledby="panda">🐼</span>│ MOTHER</s.TextDescription3>
+          <s.SpacerLarge />
+        </s.NFTContainerBar>
         <s.SpacerLarge />
         <s.NFTContainerBar>
         <s.SpacerLarge />

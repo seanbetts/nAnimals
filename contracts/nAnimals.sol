@@ -3,19 +3,24 @@
 pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/security/Pausable.sol";
 
-contract nAnimals is ERC721, ERC721Enumerable, Ownable {
+contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausable {
     using Counters for Counters.Counter;
     using Strings for uint256;
     
     string public baseURI;
+    string public hatchURI;
     address public contractAddress = address(this);
     uint256 public mintPrice = 2 ether;
+    uint256 public hatchPrice = 2 ether;
     uint256 public maxMintSupply = 2000;
+    uint256 public genStart;
     uint256 public maxMintQuantity = 10;
-    bool public paused = false;
+    bool public hatchingActive = false;
     Counters.Counter _tokenIds;
     
     mapping(uint256 => string) _tokenURIs;
@@ -57,36 +62,48 @@ contract nAnimals is ERC721, ERC721Enumerable, Ownable {
     }
 
     // public
-    function mint(uint256 _mintQuantity) public payable {
+    function mint(uint256 _mintQuantity) public payable whenNotPaused {
         uint256 supply = totalSupply();
         uint256 mintCost = calculatePrice(_mintQuantity);
         string memory uri = baseURI;
-        require(!paused, "Minting is currently paused");
         require(_mintQuantity > 0, "Mint amount must be greater than 0");
-        require(_mintQuantity <= maxMintQuantity, concatStrings("You can currently only mint up to ", Strings.toString(maxMintQuantity), " nEggs"));
+        require(_mintQuantity <= maxMintQuantity, concatStrings("You can currently only mint up to ", Strings.toString(maxMintQuantity), " nEGGs"));
         if (msg.sender != owner()) {
-            require(balanceOf(msg.sender) + _mintQuantity <=10, "You can only mint up to 10 nEggs per wallet");
+            require(balanceOf(msg.sender) + _mintQuantity <=10, "You can only mint up to 10 nEGGs per wallet");
         }
-        require(supply + _mintQuantity <= maxMintSupply, "You're trying to mint more nEggs than we have left!");
+        require(supply + _mintQuantity <= maxMintSupply, "You're trying to mint more nEGGs than we have left!");
         if (msg.sender != owner()) {
             if(whitelisted[msg.sender] != true) {
                 require(msg.sender.balance >= mintCost, "Your wallet doesn't have enough MATIC for your transaction");
-                require(msg.value >= mintCost, "You haven't sent enough MATIC in the transaction to mint your nEggs");
+                require(msg.value >= mintCost, "You haven't sent enough MATIC in the transaction to mint your nEGGs");
                 payable(msg.sender).transfer(mintCost);
             }
         }
         for (uint256 i = 0; i < _mintQuantity; i++) {
             uint256 newId = _tokenIds.current();
-            string memory newUri = concatJSON(uri, Strings.toString(newId+1));
+            string memory newUri = concatJSON(uri, Strings.toString(newId));
             _safeMint(msg.sender, newId);
             _setTokenURI(newId, newUri);
             _tokenIds.increment();
         }
     }
-
-    function withdrawMatic() public onlyOwner {
-        uint256 balance = address(this).balance;
-        payable(msg.sender).transfer(balance);
+    
+    function hatch(uint256 tokenId) public payable whenNotPaused nonReentrant {
+        string memory uri = concatJSON(hatchURI, Strings.toString(tokenId));
+        require(hatchingActive = true);
+        require(0 <= tokenId && tokenId <= 2000, "nEGG out of range");
+        require(balanceOf(_msgSender()) > 0, "nEGG needed to be able to hatch");
+        require(_msgSender() == ownerOf(tokenId), "You don't own this nEGG");
+        if (msg.sender != owner()) {
+            if(whitelisted[msg.sender] != true) {
+                require(msg.sender.balance >= hatchPrice, "Your wallet doesn't have enough MATIC for your transaction");
+                require(msg.value >= hatchPrice, "You haven't sent enough MATIC in the transaction to hatch your nEGG");
+                payable(msg.sender).transfer(hatchPrice);
+            }
+        }
+        _safeMint(msg.sender, tokenId+genStart);
+        _setTokenURI(tokenId+genStart, uri);
+        _tokenIds.increment();
     }
 
     function tokenURI(uint256 tokenId) public view virtual override returns(string memory) {
@@ -113,13 +130,39 @@ contract nAnimals is ERC721, ERC721Enumerable, Ownable {
     function setBaseURI(string memory _newBaseURI) public onlyOwner {
         baseURI = _newBaseURI;
     }
-        
-    function pause(bool _state) public onlyOwner {
-        paused = _state;
+    
+    function setGenStart(uint256 _newGenStart) public onlyOwner {
+        genStart = _newGenStart;
     }
     
-    function setMintPrice(uint256 newPrice) public onlyOwner {
-        mintPrice = newPrice;
+    function setHatchURI(string memory _newHatchURI) public onlyOwner {
+        hatchURI = _newHatchURI;
+    }
+        
+    function pause() public onlyOwner {
+        _pause();
+    }
+    
+    function unpause() public onlyOwner {
+        _unpause();
+    }
+    
+    function hatchingOn() public onlyOwner {
+        require(genStart >= totalSupply() && genStart >= 2000, "genStart must be higher than the current supply");
+        require (keccak256(abi.encodePacked(hatchURI)) != keccak256(abi.encodePacked("")), "Remember to set the hatchURI");
+        hatchingActive = true;
+    }
+
+    function hatchingOff() public onlyOwner {
+        hatchingActive = false;
+    }
+    
+    function setMintPrice(uint256 newMintPrice) public onlyOwner {
+        mintPrice = newMintPrice;
+    }
+    
+    function setHatchPrice(uint256 newHatchPrice) public onlyOwner {
+        hatchPrice = newHatchPrice;
     }
       
     function setmaxMintAmount(uint256 _newmaxMintQuantity) public onlyOwner() {
@@ -133,4 +176,10 @@ contract nAnimals is ERC721, ERC721Enumerable, Ownable {
     function removeWhitelistUser(address _user) public onlyOwner {
         whitelisted[_user] = false;
     }
+    
+    function withdrawMatic() public onlyOwner {
+        uint256 balance = address(this).balance;
+        payable(msg.sender).transfer(balance);
+    }
+
 }

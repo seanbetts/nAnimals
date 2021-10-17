@@ -37,7 +37,7 @@ export const fetchData = (account) => {
         .getState()
         .blockchain.smartContract.methods.owner()
         .call();
-      let paused = await store
+      let mintingPaused = await store
         .getState()
         .blockchain.smartContract.methods.paused()
         .call();
@@ -67,7 +67,7 @@ export const fetchData = (account) => {
           name,
           contractAddress,
           owner,
-          paused,
+          mintingPaused,
           userTokens,
           totalSupply,
           maxMintSupply,
