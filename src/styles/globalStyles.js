@@ -81,7 +81,8 @@ export const TextSubTitle3 = styled.p`
   color: var(--black);
   font-size: 20px;
   font-weight: 1000;
-  width: 50%;
+  width: 75%;
+  max-width: 750px;
   text-align: left;
 `;
 
@@ -90,7 +91,8 @@ export const TextDescription = styled.p`
   color: var(--pink);
   font-size: 14px;
   font-weight: 400;
-  width: 50%;
+  width: 75%;
+  max-width: 750px;
   text-align: center;
   line-height: 1.15;
 `;
@@ -106,7 +108,8 @@ export const TextDescription3 = styled.p`
   color: var(--black);
   font-size: 16px;
   font-weight: 500;
-  width: 50%;
+  width: 75%;
+  max-width: 750px;
   line-height: 1.15;
 `;
 
