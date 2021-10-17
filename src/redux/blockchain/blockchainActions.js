@@ -59,13 +59,14 @@ export const connect = () => {
           // Add listeners start
           window.ethereum.on("accountsChanged", (accounts) => {
             dispatch(updateAccount(accounts[0]));
+            window.location.reload();
           });
           window.ethereum.on("chainChanged", () => {
             window.location.reload();
           });
           // Add listeners end
         } else {
-          dispatch(connectFailed("Please change your wallet network to Polygon"));
+          dispatch(connectFailed("Please change your wallet to the Polygon network"));
         }
       } catch (err) {
         dispatch(connectFailed("Something went wrong, please try again"));
