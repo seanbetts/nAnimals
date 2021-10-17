@@ -27,7 +27,7 @@ function App() {
             </a>
           </s.Column>
         </s.Row>
-        <img src={nEggLogo} height={600} width={600} alt="nEgg Logo"/>
+        <img src={nEggLogo}width={400} alt="nEgg Logo"/>
         <s.SpacerLarge />
         <s.TextTitle>COMING SOON!</s.TextTitle>
         <s.SpacerLarge />
