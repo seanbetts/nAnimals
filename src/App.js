@@ -200,7 +200,7 @@ function App() {
                 dispatch(connect());
                 }}
             >
-                CONNECT
+                <s.ButtonName>CONNECT</s.ButtonName>
           </s.StyledButton>
           <s.SpacerSmall />
           {blockchain.errorMsg !== "" ? (
@@ -218,7 +218,7 @@ function App() {
           ) : (
             <>
             <s.TextTitle>{data.totalSupply}/{data.maxMintSupply} nEGGs MINTED</s.TextTitle>
-          <s.SpacerLarge />
+          <s.SpacerSmall />
           <s.TextSubTitle>nEGGs ARE {data.mintPrice/1000000000000000000} MATIC EACH TO MINT (ex. gas fees)</s.TextSubTitle>
           <s.SpacerLarge />
           <s.TextSubTitle>YOU CAN MINT UP TO {data.maxMintQuantity} nEGGs PER WALLET</s.TextSubTitle>
@@ -239,14 +239,14 @@ function App() {
           >          
           {loading ? (
             <>
-            <s.TextSubTitle2>minting...</s.TextSubTitle2>
+            <s.ButtonName>minting...</s.ButtonName>
             </>
           ) : (
           status !== "" ? (
                 <>
-                <s.TextSubTitle2>{status}</s.TextSubTitle2>
+                <s.ButtonName>{status}</s.ButtonName>
                 </>
-            ) : (<s.TextSubTitle2>MINT {mintNumber} nEGGs</s.TextSubTitle2>)
+            ) : (<s.ButtonName>MINT {mintNumber} nEGGs</s.ButtonName>)
           )}
           </s.StyledButton>
           ) : 
@@ -256,7 +256,7 @@ function App() {
               e.preventDefault();
             }}
           >
-            <s.TextSubTitle2>MINTING PAUSED</s.TextSubTitle2>
+            <s.ButtonName>MINTING PAUSED</s.ButtonName>
           </s.StyledButton2>
           )}
 
@@ -266,9 +266,6 @@ function App() {
           <s.TextDescription>Please note: Once you make the purchase, you cannot undo this action.</s.TextDescription>
           </>
           )}
-
-
-
           <s.SpacerMedium />
           {NFTS.length>0 &&
             <s.Container>

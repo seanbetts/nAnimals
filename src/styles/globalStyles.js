@@ -55,8 +55,6 @@ export const ImageContainer = styled.div`
   justify-content: ${({ jc }) => (jc ? jc : "flex-start")};
   align-items: ${({ ai }) => (ai ? ai : "center")};
   background-color: ${({ test }) => (test ? "pink" : "none")};
-  width: 100%;
-  max-width: 600px;
   background-image: ${({ image }) => (image ? `url(${image})` : "none")};
   background-size: cover;
   background-position: center;
@@ -65,37 +63,49 @@ export const ImageContainer = styled.div`
 export const TextTitle = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;
   color: var(--pink);
-  font-size: 26px;
+  font-size: 28px;
+  width: 90%;
+  max-width: 750px;
   font-weight: 1000;
+  text-align: center;
 `;
 
 export const TextTitle2 = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;
   color: var(--black);
-  font-size: 26px;
+  font-size: 28px;
+  width: 90%;
+  max-width: 750px;
   font-weight: 1000;
+  text-align: center;
 `;
 
 export const TextSubTitle = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;  
   color: var(--pink);
-  font-size: 16px;
+  font-size: 18px;
+  width: 90%;
+  max-width: 750px;
   font-weight: 500;
+  text-align: center;
 `;
 
 export const TextSubTitle2 = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;  
   color: var(--black);
-  font-size: 16px;
+  font-size: 18px;
+  width: 90%;
+  max-width: 750px;
   font-weight: 1000;
+  text-align: center;
 `;
 
 export const TextSubTitle3 = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;  
   color: var(--black);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 1000;
-  width: 75%;
+  width: 90%;
   max-width: 750px;
   text-align: left;
 `;
@@ -103,9 +113,9 @@ export const TextSubTitle3 = styled.p`
 export const TextDescription = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif; 
   color: var(--pink);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 400;
-  width: 75%;
+  width: 90%;
   max-width: 750px;
   text-align: center;
   line-height: 1.15;
@@ -114,15 +124,17 @@ export const TextDescription = styled.p`
 export const TextDescription2 = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif; 
   color: var(--yellow);
-  font-size: 16px;
+  font-size: 18px;
+  width: 90%;
+  max-width: 750px;
   font-weight: 1000;
 `;
 export const TextDescription3 = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif; 
   color: var(--black);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
-  width: 75%;
+  width: 90%;
   max-width: 750px;
   line-height: 1.15;
 `;
@@ -137,9 +149,10 @@ export const StyledButton = styled.button`
   background-color: var(--pink);
   color: black;
   border: none;
-  width: 300px;
-  font-size: 16px;
+  width: 350px;
+  font-size: 18px;
   font-weight: 1000;
+  text-align: center;
   padding: 10px;
   border-radius: 10px;
   margin: 10px 0px;
@@ -160,11 +173,19 @@ export const StyledButton2 = styled.button`
   color: black;
   border: none;
   width: 400px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 1000;
+  text-align: center;
   padding: 10px;
   border-radius: 10px;
   margin: 10px 0px;
+`;
+
+export const ButtonName = styled.div`
+  font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;  
+  font-size: 18px;
+  font-weight: 1000;
+  text-align: center;
 `;
 
 
