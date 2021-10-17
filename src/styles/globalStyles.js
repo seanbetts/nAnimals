@@ -66,7 +66,7 @@ export const TextTitle2 = styled.p`
 
 export const TextSubTitle = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;  
-  color: var(--black);
+  color: var(--pink);
   font-size: 20px;
   font-weight: 500;
 `;
