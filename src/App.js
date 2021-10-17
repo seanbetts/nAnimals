@@ -31,12 +31,6 @@ function App() {
           <s.SpacerLarge />
           <s.TextTitle>COMING SOON!</s.TextTitle>
         </s.Container>
-        <s.Container>
-          <s.SpacerLarge />
-          <s.TextDescription>COPYRIGHT 2021 SEAN BETTS</s.TextDescription>
-          <s.SpacerSmall />
-          <s.TextDescription>CONTRACT: xxxxxxxxxxxxxxx</s.TextDescription>
-          <s.SpacerLarge />
             <s.NFTContainerBar>
         <s.SpacerLarge />
         <s.TextTitle2>ABOUT</s.TextTitle2>
