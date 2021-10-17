@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const Screen = styled.div`
   background-color: var(--blue);
   background-image: ${({ image }) => (image ? `url(${image})` : "none")};
-
   background-position: center;
   width: 100%;
   display: flex;
@@ -82,7 +81,7 @@ export const TextSubTitle3 = styled.p`
   color: var(--black);
   font-size: 20px;
   font-weight: 1000;
-  width: 750px;
+  width: 50%;
   text-align: left;
 `;
 
@@ -91,7 +90,7 @@ export const TextDescription = styled.p`
   color: var(--pink);
   font-size: 14px;
   font-weight: 400;
-  width: 650px;
+  width: 50%;
   text-align: center;
   line-height: 1.15;
 `;
@@ -107,7 +106,7 @@ export const TextDescription3 = styled.p`
   color: var(--black);
   font-size: 16px;
   font-weight: 500;
-  width: 750px;
+  width: 50%;
   line-height: 1.15;
 `;
 
