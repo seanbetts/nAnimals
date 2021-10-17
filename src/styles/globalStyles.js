@@ -66,7 +66,7 @@ export const TextTitle2 = styled.p`
 
 export const TextSubTitle = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;  
-  color: var(--pink);
+  color: var(--black);
   font-size: 20px;
   font-weight: 500;
 `;
@@ -94,6 +94,7 @@ export const TextDescription = styled.p`
   font-weight: 400;
   width: 650px;
   text-align: center;
+  line-height: 1.15;
 `;
 
 export const TextDescription2 = styled.p`
@@ -108,6 +109,7 @@ export const TextDescription3 = styled.p`
   font-size: 16px;
   font-weight: 500;
   width: 750px;
+  line-height: 1.15;
 `;
 
 export const StyledClickable = styled.div`
