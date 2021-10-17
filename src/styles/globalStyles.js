@@ -8,6 +8,9 @@ export const Screen = styled.div`
   min-width: 100%;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 `;
 
 // Used for providing space between components
