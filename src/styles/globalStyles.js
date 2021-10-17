@@ -5,7 +5,7 @@ export const Screen = styled.div`
   background-color: var(--blue);
   background-image: ${({ image }) => (image ? `url(${image})` : "none")};
   background-position: center;
-  width: 100%;
+  min-width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -48,38 +48,52 @@ export const Container = styled.div`
   background-position: center;
 `;
 
+export const ImageContainer = styled.div`
+  display: flex;
+  flex: ${({ flex }) => (flex ? flex : 0)};
+  flex-direction: ${({ fd }) => (fd ? fd : "column")};
+  justify-content: ${({ jc }) => (jc ? jc : "flex-start")};
+  align-items: ${({ ai }) => (ai ? ai : "center")};
+  background-color: ${({ test }) => (test ? "pink" : "none")};
+  width: 100%;
+  max-width: 600px;
+  background-image: ${({ image }) => (image ? `url(${image})` : "none")};
+  background-size: cover;
+  background-position: center;
+`;
+
 export const TextTitle = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;
   color: var(--pink);
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 1000;
 `;
 
 export const TextTitle2 = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;
   color: var(--black);
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 1000;
 `;
 
 export const TextSubTitle = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;  
   color: var(--pink);
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
 `;
 
 export const TextSubTitle2 = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;  
   color: var(--black);
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 1000;
 `;
 
 export const TextSubTitle3 = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;  
   color: var(--black);
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 1000;
   width: 75%;
   max-width: 750px;
@@ -89,7 +103,7 @@ export const TextSubTitle3 = styled.p`
 export const TextDescription = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif; 
   color: var(--pink);
-  font-size: 14px;
+  font-size: 10px;
   font-weight: 400;
   width: 75%;
   max-width: 750px;
@@ -100,13 +114,13 @@ export const TextDescription = styled.p`
 export const TextDescription2 = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif; 
   color: var(--yellow);
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 1000;
 `;
 export const TextDescription3 = styled.p`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif; 
   color: var(--black);
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
   width: 75%;
   max-width: 750px;
@@ -123,19 +137,17 @@ export const StyledButton = styled.button`
   background-color: var(--pink);
   color: black;
   border: none;
-  width: 400px;
-  font-size: 20px;
+  width: 300px;
+  font-size: 16px;
   font-weight: 1000;
   padding: 10px;
   border-radius: 10px;
   margin: 10px 0px;
   cursor: pointer;
-
   :hover {
     background-color: var(--pink);
     box-shadow: 0 9px var(--purple);
   }
-
   :active {
     background-color: var(--pink);
     box-shadow: 0 5px var(--purple);
@@ -148,7 +160,7 @@ export const StyledButton2 = styled.button`
   color: black;
   border: none;
   width: 400px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 1000;
   padding: 10px;
   border-radius: 10px;

@@ -183,7 +183,9 @@ function App() {
               </a>
             </s.Column>
           </s.Row>
-          <img src={nEggLogo} height={600} width={600} alt="nEgg Logo"/>
+          <s.ImageContainer>
+          <img src={nEggLogo} width={400} alt="nEgg Logo"/>
+          </s.ImageContainer>
           <s.SpacerLarge />
         </s.Container>
         {blockchain.account === "" || blockchain.smartContract === null ? (
@@ -304,6 +306,8 @@ function App() {
         <s.SpacerLarge />
         <s.NFTContainerBar>
         <s.SpacerLarge />
+        <s.TextTitle2>ABOUT</s.TextTitle2>
+          <s.SpacerXSmall />
           <s.TextDescription3>nANIMALs is a new generative NFT art project living on the Ethereum-compatible Polygon Proof of Stake (POS) Network.</s.TextDescription3>
           <s.SpacerSmall />
           <s.TextDescription3>Our ambition for this project is not to take ourselves too seriously and to just enjoy the space. We're looking to build a relaxed community on Discord to hang out and there will be lots of fun to be had along the way!</s.TextDescription3>
