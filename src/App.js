@@ -207,7 +207,6 @@ function App() {
         </s.Container>
       ) : (
         <s.Container>
-          
           {Number(data.totalSupply) === Number(data.maxMintSupply) ? (
             <>
             <s.TextTitle>ALL nEGGs ARE MINTED!</s.TextTitle>
@@ -228,7 +227,8 @@ function App() {
           <s.SpacerLarge />
           <s.SpacerSmall />
 
-          {data.mintingPaused === false ? (
+          {data.mintingPaused === false ? 
+          (
           <s.StyledButton
             onClick={(e) => {
               e.preventDefault();
@@ -247,7 +247,8 @@ function App() {
             ) : (<s.TextSubTitle2>MINT {mintNumber} nEGGs</s.TextSubTitle2>)
           )}
           </s.StyledButton>
-          ) : (
+          ) : 
+          (
             <s.StyledButton2
             onClick={(e) => {
               e.preventDefault();
@@ -263,6 +264,9 @@ function App() {
           <s.TextDescription>Please note: Once you make the purchase, you cannot undo this action.</s.TextDescription>
           </>
           )}
+
+
+
           <s.SpacerMedium />
           {NFTS.length>0 &&
             <s.Container>
