@@ -24,7 +24,7 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
     Counters.Counter _tokenIds;
     
     mapping(uint256 => string) _tokenURIs;
-    mapping (address => bool) public whitelisted;
+    mapping (address => bool) public inclusionlisted;
     
     struct RenderUserToken {
         uint256 id;
@@ -51,7 +51,7 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
             }
             require(supply + _mintQuantity <= maxMintSupply, "You're trying to mint more nEGGs than we have left!");
             if (msg.sender != owner()) {
-                if(whitelisted[msg.sender] != true) {
+                if(inclusionlisted[msg.sender] != true) {
                     require(msg.sender.balance >= mintCost, "Your wallet doesn't have enough MATIC for your transaction");
                     require(msg.value >= mintCost, "You haven't sent enough MATIC in the transaction to mint your nEGGs");
                     payable(msg.sender).transfer(mintCost);
@@ -78,7 +78,7 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
             require(balanceOf(_msgSender()) > 0, "nEGG needed to be able to hatch");
             require(_msgSender() == ownerOf(tokenId), "You don't own this nEGG");
             if (msg.sender != owner()) {
-                if(whitelisted[msg.sender] != true) {
+                if(inclusionlisted[msg.sender] != true) {
                     require(msg.sender.balance >= hatchPrice, "Your wallet doesn't have enough MATIC for your transaction");
                     require(msg.value >= hatchPrice, "You haven't sent enough MATIC in the transaction to hatch your nEGG");
                     payable(msg.sender).transfer(hatchPrice);
@@ -198,18 +198,18 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
             maxMintQuantity = _newmaxMintQuantity;
         }
   
-    function whitelistUser(address _user) 
+    function inclusionlistUser(address _user) 
         public 
         onlyOwner 
         {
-            whitelisted[_user] = true;
+            inclusionlisted[_user] = true;
         }
      
-    function removeWhitelistUser(address _user) 
+    function removeinclusionlistUser(address _user) 
         public 
         onlyOwner 
         {
-            whitelisted[_user] = false;
+            inclusionlisted[_user] = false;
         }
     
     function withdrawMatic() 
