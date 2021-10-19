@@ -229,7 +229,8 @@ function App() {
           <s.SpacerLarge />
           <s.SpacerSmall />
 
-          {data.mintingPaused === false ? 
+          {/* eslint-disable-next-line  */}
+          {data.mintingPaused == false ? 
           (
           <s.StyledButton
             onClick={(e) => {

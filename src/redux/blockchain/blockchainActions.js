@@ -34,20 +34,23 @@ const updateAccountRequest = (payload) => {
 export const connect = () => {
   return async (dispatch) => {
     dispatch(connectRequest());
-    if (window.ethereum) {
-      let web3 = new Web3(window.ethereum);
+    const {ethereum} = window;
+    const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
+    if (metamaskIsInstalled) {
+      let web3 = new Web3(ethereum);
       try {
-        const accounts = await window.ethereum.request({
+        const accounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        const networkId = await window.ethereum.request({
+        const networkId = await ethereum.request({
           method: "net_version",
         });
-        const NetworkData = await nAnimals.networks[networkId];
-        if (NetworkData) {
+        // const NetworkData = await nAnimals.networks[networkId];
+        // eslint-disable-next-line 
+        if (networkId == 80001) { //NetworkData
           const SmartContractObj = new web3.eth.Contract(
-            nAnimals.abi,
-            NetworkData.address
+            nAnimals,//.abi,
+            "0x7c5E23adb9c12bE3bCe9227Ce52A42ABFeEcb3Cd"// NetworkData.address
           );
           dispatch(
             connectSuccess({
@@ -57,11 +60,11 @@ export const connect = () => {
             })
           );
           // Add listeners start
-          window.ethereum.on("accountsChanged", (accounts) => {
+          ethereum.on("accountsChanged", (accounts) => {
             dispatch(updateAccount(accounts[0]));
             window.location.reload();
           });
-          window.ethereum.on("chainChanged", () => {
+          ethereum.on("chainChanged", () => {
             window.location.reload();
           });
           // Add listeners end

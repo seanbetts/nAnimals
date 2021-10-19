@@ -31,7 +31,7 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
         string uri;
     }
     
-    constructor(string memory _initBaseURI) ERC721("nAnimals", "NANI") {
+    constructor(string memory _initBaseURI) ERC721("nANIMALs", "NANI") {
         setBaseURI(_initBaseURI);
     }
 
@@ -42,10 +42,10 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
         whenNotPaused 
         {
             uint256 supply = totalSupply();
-            uint256 mintCost = calculatePrice(_mintQuantity);
+            uint256 mintCost = _calculatePrice(_mintQuantity);
             string memory uri = baseURI;
             require(_mintQuantity > 0, "Mint amount must be greater than 0");
-            require(_mintQuantity <= maxMintQuantity, concatStrings("You can currently only mint up to ", Strings.toString(maxMintQuantity), " nEGGs"));
+            require(_mintQuantity <= maxMintQuantity, _concatStrings("You can currently only mint up to ", Strings.toString(maxMintQuantity), " nEGGs"));
             if (msg.sender != owner()) {
                 require(balanceOf(msg.sender) + _mintQuantity <=10, "You can only mint up to 10 nEGGs per wallet");
             }
@@ -59,7 +59,7 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
             }
             for (uint256 i = 0; i < _mintQuantity; i++) {
                 uint256 newId = _tokenIds.current();
-                string memory newUri = concatJSON(uri, Strings.toString(newId));
+                string memory newUri = _concatJSON(uri, Strings.toString(newId));
                 _safeMint(msg.sender, newId);
                 _setTokenURI(newId, newUri);
                 _tokenIds.increment();
@@ -72,7 +72,7 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
         whenNotPaused 
         nonReentrant 
         {
-            string memory uri = concatJSON(hatchURI, Strings.toString(tokenId));
+            string memory uri = _concatJSON(hatchURI, Strings.toString(tokenId));
             require(hatchingActive = true);
             require(0 <= tokenId && tokenId <= 2000, "nEGG out of range");
             require(balanceOf(_msgSender()) > 0, "nEGG needed to be able to hatch");
@@ -191,7 +191,7 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
             hatchPrice = newHatchPrice;
         }
       
-    function setmaxMintAmount(uint256 _newmaxMintQuantity) 
+    function setmaxMintQuantity(uint256 _newmaxMintQuantity) 
         public 
         onlyOwner() 
         {
@@ -237,7 +237,7 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
             _tokenURIs[tokenId] = _tokenURI;
         }
     
-    function calculatePrice(uint256 numberOfTokens) 
+    function _calculatePrice(uint256 numberOfTokens) 
         internal 
         view 
         returns (uint256)
@@ -245,7 +245,7 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
             return mintPrice * numberOfTokens;
         }
 
-    function concatJSON(string memory strOne, string memory strTwo) 
+    function _concatJSON(string memory strOne, string memory strTwo) 
         private 
         pure 
         returns (string memory) 
@@ -253,7 +253,7 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
             return string(abi.encodePacked(strOne, strTwo, ".json"));
         }
     
-    function concatStrings(string memory strOne, string memory strTwo, string memory strThree) 
+    function _concatStrings(string memory strOne, string memory strTwo, string memory strThree) 
         private 
         pure 
         returns (string memory) 
