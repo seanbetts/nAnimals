@@ -3,6 +3,7 @@
 pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -11,6 +12,7 @@ import "@openzeppelin/contracts/security/Pausable.sol";
 contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausable {
     using Counters for Counters.Counter;
     using Strings for uint256;
+    using SafeERC20 for IERC20;
     
     string public baseURI;
     string public hatchURI;
@@ -39,7 +41,8 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
     function mint(uint256 _mintQuantity) 
         public 
         payable 
-        whenNotPaused 
+        whenNotPaused
+        nonReentrant 
         {
             uint256 supply = totalSupply();
             uint256 mintCost = _calculatePrice(_mintQuantity);
@@ -54,7 +57,6 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
                 if(inclusionlisted[msg.sender] != true) {
                     require(msg.sender.balance >= mintCost, "Your wallet doesn't have enough MATIC for your transaction");
                     require(msg.value >= mintCost, "You haven't sent enough MATIC in the transaction to mint your nEGGs");
-                    payable(msg.sender).transfer(mintCost);
                 }
             }
             for (uint256 i = 0; i < _mintQuantity; i++) {
@@ -73,7 +75,7 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
         nonReentrant 
         {
             string memory uri = _concatJSON(hatchURI, Strings.toString(tokenId));
-            require(hatchingActive = true);
+            require(hatchingActive == true, "Hatching not active");
             require(0 <= tokenId && tokenId <= 2000, "nEGG out of range");
             require(balanceOf(_msgSender()) > 0, "nEGG needed to be able to hatch");
             require(_msgSender() == ownerOf(tokenId), "You don't own this nEGG");
@@ -81,7 +83,6 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
                 if(inclusionlisted[msg.sender] != true) {
                     require(msg.sender.balance >= hatchPrice, "Your wallet doesn't have enough MATIC for your transaction");
                     require(msg.value >= hatchPrice, "You haven't sent enough MATIC in the transaction to hatch your nEGG");
-                    payable(msg.sender).transfer(hatchPrice);
                 }
             }
             _safeMint(msg.sender, tokenId+genStart);
@@ -137,6 +138,7 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
         public 
         onlyOwner 
         {
+            require(_newGenStart >= maxMintSupply);
             genStart = _newGenStart;
         }
     
@@ -193,7 +195,7 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
       
     function setmaxMintQuantity(uint256 _newmaxMintQuantity) 
         public 
-        onlyOwner() 
+        onlyOwner
         {
             maxMintQuantity = _newmaxMintQuantity;
         }
@@ -219,6 +221,10 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
             uint256 balance = address(this).balance;
             payable(msg.sender).transfer(balance);
         }
+
+    function withdrawERC20(IERC20 token) public onlyOwner {
+        token.transfer(msg.sender, token.balanceOf(address(this)));
+    }
 
     // internal
     function _baseURI() 
