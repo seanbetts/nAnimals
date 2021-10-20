@@ -47,10 +47,10 @@ export const connect = () => {
         });
         // const NetworkData = await nAnimals.networks[networkId];
         // eslint-disable-next-line 
-        if (networkId == 80001) { //NetworkData
+        if (networkId == 137) { //NetworkData
           const SmartContractObj = new web3.eth.Contract(
             nAnimals,//.abi,
-            "0x7c5E23adb9c12bE3bCe9227Ce52A42ABFeEcb3Cd"// NetworkData.address
+            "0x0342a2d0Ed0Fb827B155404d2D1cF0aDb66F4c13"// NetworkData.address
           );
           dispatch(
             connectSuccess({
