@@ -227,7 +227,7 @@ export const NFTSContainer = styled.div`
   flex-direction: column;
   flex-shrink: 0;
   width: 220px;
-  height: 266px;
+  height: 260px;
   align-items: ${({ ai }) => (ai ? ai : "center")};
   background-color: var(--dirtywhite);
   margin: 10px;

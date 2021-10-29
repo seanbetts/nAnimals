@@ -29,15 +29,50 @@ export const fetchData = (account) => {
         .getState()
         .blockchain.smartContract.methods.name()
         .call();
+      let contractAddress = await store
+        .getState()
+        .blockchain.smartContract.methods.contractAddress()
+        .call();
+      let owner = await store
+        .getState()
+        .blockchain.smartContract.methods.owner()
+        .call();
+      let mintingPaused = await store
+        .getState()
+        .blockchain.smartContract.methods.paused()
+        .call();
       let userTokens = await store
         .getState()
         .blockchain.smartContract.methods.getUserTokens(account)
+        .call();
+      let totalSupply = await store
+        .getState()
+        .blockchain.smartContract.methods.totalSupply()
+        .call();
+      let maxMintSupply = await store
+        .getState()
+        .blockchain.smartContract.methods.maxMintSupply()
+        .call();
+        let maxMintQuantity = await store
+        .getState()
+        .blockchain.smartContract.methods.maxMintQuantity()
+        .call();
+      let mintPrice = await store
+        .getState()
+        .blockchain.smartContract.methods.mintPrice()
         .call();
 
       dispatch(
         fetchDataSuccess({
           name,
+          contractAddress,
+          owner,
+          mintingPaused,
           userTokens,
+          totalSupply,
+          maxMintSupply,
+          maxMintQuantity,
+          mintPrice,
         })
       );
     } catch (err) {
