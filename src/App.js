@@ -35,70 +35,70 @@ function App() {
       },
       label: <strong>2</strong>,
     },
-    3: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>3</strong>,
-    }, 
-    4: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>4</strong>,
-    },
-    5: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>5</strong>,
-    },
-    6: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>6</strong>,
-    },
-    7: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>7</strong>,
-    },
-    8: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>8</strong>,
-    },
-    9: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>9</strong>,
-    },
-    10: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>10</strong>,
-    }
+//     3: {
+//       style: {
+//         fontFamily: 'Arial',
+//         fontSize: '20px',
+//         color: '#FF3D94',
+//       },
+//       label: <strong>3</strong>,
+//     }, 
+//     4: {
+//       style: {
+//         fontFamily: 'Arial',
+//         fontSize: '20px',
+//         color: '#FF3D94',
+//       },
+//       label: <strong>4</strong>,
+//     },
+//     5: {
+//       style: {
+//         fontFamily: 'Arial',
+//         fontSize: '20px',
+//         color: '#FF3D94',
+//       },
+//       label: <strong>5</strong>,
+//     },
+//     6: {
+//       style: {
+//         fontFamily: 'Arial',
+//         fontSize: '20px',
+//         color: '#FF3D94',
+//       },
+//       label: <strong>6</strong>,
+//     },
+//     7: {
+//       style: {
+//         fontFamily: 'Arial',
+//         fontSize: '20px',
+//         color: '#FF3D94',
+//       },
+//       label: <strong>7</strong>,
+//     },
+//     8: {
+//       style: {
+//         fontFamily: 'Arial',
+//         fontSize: '20px',
+//         color: '#FF3D94',
+//       },
+//       label: <strong>8</strong>,
+//     },
+//     9: {
+//       style: {
+//         fontFamily: 'Arial',
+//         fontSize: '20px',
+//         color: '#FF3D94',
+//       },
+//       label: <strong>9</strong>,
+//     },
+//     10: {
+//       style: {
+//         fontFamily: 'Arial',
+//         fontSize: '20px',
+//         color: '#FF3D94',
+//       },
+//       label: <strong>10</strong>,
+//     }
   }
 
   function log(value) {
@@ -221,10 +221,10 @@ function App() {
           <s.SpacerSmall />
           <s.TextSubTitle>nEGGs ARE {data.mintPrice/1000000000000000000} MATIC EACH TO MINT (ex. gas fees)</s.TextSubTitle>
           <s.SpacerLarge />
-          <s.TextSubTitle>YOU CAN MINT UP TO {data.maxMintQuantity} nEGGs PER WALLET</s.TextSubTitle>
+          <s.TextSubTitle>YOU CAN MINT UP TO {data.maxMintQuantity} nEGGs PER WALLET, UP TO 2 PER TRANSACTION</s.TextSubTitle>
           <s.SpacerSmall />
           <s.Slider>
-          <Slider dots trackStyle={{backgroundColor:'#FF3D94', height:5}} handleStyle={{backgroundColor: '#FF3D94', borderColor: '#FF3D94'}} activeDotStyle={{backgroundColor: '#FF3D94'}} dotStyle={{borderColor: '#FF3D94'}} min={1} max={10} onChange={log} defaultValue={1} marks={marks} />
+          <Slider dots trackStyle={{backgroundColor:'#FF3D94', height:5}} handleStyle={{backgroundColor: '#FF3D94', borderColor: '#FF3D94'}} activeDotStyle={{backgroundColor: '#FF3D94'}} dotStyle={{borderColor: '#FF3D94'}} min={1} max={2} onChange={log} defaultValue={1} marks={marks} />
           </s.Slider>
           <s.SpacerLarge />
           <s.SpacerSmall />
