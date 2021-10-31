@@ -15,7 +15,6 @@ function App() {
   const data = useSelector((state) => state.data);
   const [loading, setLoading] = useState (false);
   const [status, setStatus] = useState ("");
-  var [mintNumber, setMintNumber] = useState (1);
   const [NFTS, setNFTs] = useState ([]);
 
   useEffect(() => {
@@ -47,7 +46,7 @@ function App() {
         console.log(receipt);
         dispatch(fetchData(blockchain.account));
         setLoading(false);
-        setStatus(mintNumber + " nEGGs SUCCESSFULLY MINTED!");
+        setStatus("nEGG SUCCESSFULLY HATCHED!");
         delay();
       });
   };
@@ -143,7 +142,7 @@ function App() {
           <s.StyledButton
             onClick={(e) => {
               e.preventDefault();
-              mint(mintNumber);
+              mint(1);
             }}
           >          
           {loading ? (
