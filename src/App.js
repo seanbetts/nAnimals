@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
-import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import nEggLogo from "./images/nEggLogoTitle.png";
 import discord from "./images/discord.png";
@@ -18,92 +17,6 @@ function App() {
   const [status, setStatus] = useState ("");
   var [mintNumber, setMintNumber] = useState (1);
   const [NFTS, setNFTs] = useState ([]);
-  const marks= {
-    1: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>1</strong>,
-    },
-    2: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>2</strong>,
-    },
-    3: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>3</strong>,
-    }, 
-    4: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>4</strong>,
-    },
-    5: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>5</strong>,
-    },
-    6: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>6</strong>,
-    },
-    7: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>7</strong>,
-    },
-    8: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>8</strong>,
-    },
-    9: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>9</strong>,
-    },
-    10: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>10</strong>,
-    }
-  }
-
-  function log(value) {
-    setMintNumber(value)
-  }
 
   useEffect(() => {
     document.title = "nAnimals 🐻🐱🐶🐰"
