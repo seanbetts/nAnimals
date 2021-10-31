@@ -190,7 +190,7 @@ function App() {
         </s.Container>
         {blockchain.account === "" || blockchain.smartContract === null ? (
         <s.Container>
-            <s.TextSubTitle>TO MINT A nEGG</s.TextSubTitle>
+            <s.TextSubTitle>TO HATCH A nEGG</s.TextSubTitle>
             <s.SpacerSmall />
             <s.TextSubTitle>CONNECT TO THE POLYGON NETWORK</s.TextSubTitle>
             <s.SpacerSmall />
@@ -211,23 +211,18 @@ function App() {
         <s.Container>
           {Number(data.totalSupply) === Number(data.maxMintSupply) ? (
             <>
-            <s.TextTitle>ALL nEGGs ARE MINTED!</s.TextTitle>
+            <s.TextTitle>ALL nEGGs ARE HATCHED!</s.TextTitle>
             <s.SpacerSmall />
             <s.TextDescription><a target={"_blank"} rel="noopener noreferrer" href={"https://opensea.io/"}>VISIT OUR OFFICIAL COLLECTION ON OPENSEA TO BUY A nEGG</a></s.TextDescription>
             </>
           ) : (
             <>
-            <s.TextTitle>{data.totalSupply}/{data.maxMintSupply} nEGGs MINTED</s.TextTitle>
+            <s.TextTitle>{data.totalSupply}/{data.maxMintSupply} nEGGs HATCHED</s.TextTitle>
           <s.SpacerSmall />
-          <s.TextSubTitle>nEGGs ARE {data.mintPrice/1000000000000000000} MATIC EACH TO MINT (ex. gas fees)</s.TextSubTitle>
+          <s.TextSubTitle>nEGGs ARE {data.mintPrice/1000000000000000000} MATIC EACH TO HATCH (ex. gas fees)</s.TextSubTitle>
           <s.SpacerLarge />
-          <s.TextSubTitle>YOU CAN MINT UP TO {data.maxMintQuantity} nEGGs PER WALLET</s.TextSubTitle>
-          <s.SpacerSmall />
-          <s.Slider>
-          <Slider dots trackStyle={{backgroundColor:'#FF3D94', height:5}} handleStyle={{backgroundColor: '#FF3D94', borderColor: '#FF3D94'}} activeDotStyle={{backgroundColor: '#FF3D94'}} dotStyle={{borderColor: '#FF3D94'}} min={1} max={10} onChange={log} defaultValue={1} marks={marks} />
-          </s.Slider>
+          <s.TextSubTitle>YOU CAN HATCH 1 nEGG AT A TIME</s.TextSubTitle>
           <s.SpacerLarge />
-          <s.SpacerSmall />
 
           {/* eslint-disable-next-line  */}
           {data.mintingPaused == false ? 
@@ -257,7 +252,7 @@ function App() {
               e.preventDefault();
             }}
           >
-            <s.ButtonName>MINTING PAUSED</s.ButtonName>
+            <s.ButtonName>HATCHING PAUSED</s.ButtonName>
           </s.StyledButton2>
           )}
 
@@ -272,7 +267,7 @@ function App() {
             <s.Container>
               <s.NFTContainerBar>
               <s.SpacerLarge />
-              <s.TextTitle2>YOUR nEGG COLLECTION</s.TextTitle2>
+              <s.TextTitle2>YOUR nEGG & nANIMAL COLLECTION</s.TextTitle2>
               <s.SpacerSmall />
                 <s.NFTContainer>
                   {data.loading ? (
