@@ -269,6 +269,8 @@ function App() {
               <s.SpacerLarge />
               <s.TextTitle2>YOUR nEGG & nANIMAL COLLECTION</s.TextTitle2>
               <s.SpacerSmall />
+              <s.TextSubTitle>PLEASE SELECT ONE OF YOUR nEGGs TO HATCH!</s.TextSubTitle>
+              <s.SpacerSmall />
                 <s.NFTContainer>
                   {data.loading ? (
                   <>
