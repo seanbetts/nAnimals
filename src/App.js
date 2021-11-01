@@ -16,39 +16,41 @@ function App() {
   const [loading, setLoading] = useState (false);
   const [status, setStatus] = useState ("");
   const [NFTS, setNFTs] = useState ([]);
+  const [nEGG, setnEGG] = useState (-1);
 
   useEffect(() => {
     document.title = "nAnimals 🐻🐱🐶🐰"
   }, []);
 
   function delay() {
-    setTimeout(function(){ setStatus(""); }, 2000);
+    setTimeout(function(){ setStatus(""); }, 3000);
   }
 
-  const mint = (tokenNumber) => {
+  const hatch = (tokenNumber) => {
     setLoading(true);
+    console.log(tokenNumber);
 
-    blockchain.smartContract.methods
-      .mint(tokenNumber)
-      .send({
-        gasLimit: (285000 * tokenNumber).toString(),
-        to: data.owner,
-        from: blockchain.account,
-        value: blockchain.web3.utils.toWei((data.mintPrice/1000000000000000000 * tokenNumber).toString(), "ether"),
-      })
-      .once("error", (err) => {
-        console.log(err);
-        setLoading(false);
-        setStatus("ERROR - TRY MINTING AGAIN!");
-        delay();
-      })
-      .then((receipt) => {
-        console.log(receipt);
-        dispatch(fetchData(blockchain.account));
-        setLoading(false);
-        setStatus("nEGG SUCCESSFULLY HATCHED!");
-        delay();
-      });
+    // blockchain.smartContract.methods
+    //   .mint(tokenNumber)
+    //   .send({
+    //     gasLimit: (285000 * tokenNumber).toString(),
+    //     to: data.owner,
+    //     from: blockchain.account,
+    //     value: blockchain.web3.utils.toWei((data.mintPrice/1000000000000000000 * tokenNumber).toString(), "ether"),
+    //   })
+    //   .once("error", (err) => {
+    //     console.log(err);
+    //     setLoading(false);
+    //     setStatus("ERROR - TRY HATCHING AGAIN!");
+    //     delay();
+    //   })
+    //   .then((receipt) => {
+    //     console.log(receipt);
+    //     dispatch(fetchData(blockchain.account));
+    //     setLoading(false);
+    //     setStatus("nEGG SUCCESSFULLY HATCHED!");
+    //     delay();
+    //   });
   };
 
   const fetchMetaDataForNFTS = useCallback(() => {
@@ -132,46 +134,8 @@ function App() {
             <s.TextTitle>{data.totalSupply}/{data.maxMintSupply} nEGGs HATCHED</s.TextTitle>
           <s.SpacerSmall />
           <s.TextSubTitle>nEGGs ARE {data.mintPrice/1000000000000000000} MATIC EACH TO HATCH (ex. gas fees)</s.TextSubTitle>
-          <s.SpacerLarge />
-          <s.TextSubTitle>YOU CAN HATCH 1 nEGG AT A TIME</s.TextSubTitle>
-          <s.SpacerLarge />
-
-          {/* eslint-disable-next-line  */}
-          {data.mintingPaused == false ? 
-          (
-          <s.StyledButton
-            onClick={(e) => {
-              e.preventDefault();
-              mint(1);
-            }}
-          >          
-          {loading ? (
-            <>
-            <s.ButtonName>hatching...</s.ButtonName>
-            </>
-          ) : (
-          status !== "" ? (
-                <>
-                <s.ButtonName>{status}</s.ButtonName>
-                </>
-            ) : (<s.ButtonName>HATCH nEGG</s.ButtonName>)
-          )}
-          </s.StyledButton>
-          ) : 
-          (
-            <s.StyledButton2
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-          >
-            <s.ButtonName>HATCHING PAUSED</s.ButtonName>
-          </s.StyledButton2>
-          )}
-
           <s.SpacerSmall />
-          <s.TextDescription>Please make sure you are connected to the right network (Polygon Mainnet) and the correct address (0x0342a2d0Ed0Fb827B155404d2D1cF0aDb66F4c13).</s.TextDescription>
-          <s.SpacerXSmall />
-          <s.TextDescription>Please note: Once you make the purchase, you cannot undo this action.</s.TextDescription>
+          <s.TextSubTitle>YOU CAN HATCH 1 nEGG AT A TIME</s.TextSubTitle>
           </>
           )}
           <s.SpacerMedium />
@@ -181,8 +145,7 @@ function App() {
               <s.SpacerLarge />
               <s.TextTitle2>YOUR nEGG & nANIMAL COLLECTION</s.TextTitle2>
               <s.SpacerSmall />
-              <s.TextSubTitle>PLEASE SELECT ONE OF YOUR nEGGs TO HATCH!</s.TextSubTitle>
-              <s.SpacerSmall />
+              <s.TextSubTitle2>PLEASE SELECT ONE OF YOUR nEGGs TO HATCH:</s.TextSubTitle2>
                 <s.NFTContainer>
                   {data.loading ? (
                   <>
@@ -196,6 +159,10 @@ function App() {
                               alt={nft.metaData.name}
                               src={nft.metaData.image.replace('ipfs://', 'https://nanimals.mypinata.cloud/ipfs/')} 
                               width={200}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setnEGG(nft.metaData.name.replace('nEGG #', '')-1);
+                              }}
                             />
                             <s.SpacerSmall />
                             <s.TextSubTitle>{nft.metaData.name}</s.TextSubTitle>
@@ -204,9 +171,47 @@ function App() {
                     })
                   )}
                 </s.NFTContainer>
-                <s.SpacerLarge />
-              </s.NFTContainerBar>
+              
+          {/* eslint-disable-next-line  */}
+          {data.mintingPaused == false ? 
+          (
+          <s.StyledButton3
+            onClick={(e) => {
+              e.preventDefault();
+              hatch(nEGG);
+            }}
+          >          
+          {loading ? (
+            <>
+            <s.ButtonName>hatching...</s.ButtonName>
+            </>
+          ) : (
+          status !== "" ? (
+                <>
+                <s.ButtonName>{status}</s.ButtonName>
+                </>
+            ) : (<s.ButtonName>HATCH nEGG #{nEGG+1}</s.ButtonName>)
+          )}
+          </s.StyledButton3>
+          ) : 
+          (
+            <s.StyledButton2
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          >
+            <s.ButtonName>HATCHING PAUSED</s.ButtonName>
+          </s.StyledButton2>
+          )}
+
+          <s.SpacerSmall />
+          <s.TextDescription4>Please make sure you are connected to the right network (Polygon Mainnet) and the correct address (0x0342a2d0Ed0Fb827B155404d2D1cF0aDb66F4c13).</s.TextDescription4>
+          <s.SpacerXSmall />
+          <s.TextDescription4>Please note: Once you make the purchase, you cannot undo this action.</s.TextDescription4>
+          <s.SpacerLarge />
+          </s.NFTContainerBar>
             </s.Container>
+            
           }
         </s.Container>
         )}

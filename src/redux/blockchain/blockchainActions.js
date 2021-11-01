@@ -45,12 +45,11 @@ export const connect = () => {
         const networkId = await ethereum.request({
           method: "net_version",
         });
-        // const NetworkData = await nAnimals.networks[networkId];
         // eslint-disable-next-line 
-        if (networkId == 137) { //NetworkData
+        if (networkId == 80001) { //137 for Polygon, 80001 for Mumbai
           const SmartContractObj = new web3.eth.Contract(
-            nAnimals,//.abi,
-            "0x0342a2d0Ed0Fb827B155404d2D1cF0aDb66F4c13"// NetworkData.address
+            nAnimals,
+            "0x7c5e23adb9c12be3bce9227ce52a42abfeecb3cd" //0x0342a2d0Ed0Fb827B155404d2D1cF0aDb66F4c13 for Polygon, 0x7c5e23adb9c12be3bce9227ce52a42abfeecb3cd for Mumbai
           );
           dispatch(
             connectSuccess({
