@@ -19,7 +19,7 @@ function App() {
   const [nEGG, setnEGG] = useState (-1);
 
   useEffect(() => {
-    document.title = "nAnimals 🐻🐱🐶🐰"
+    document.title = "nANIMALs 🐻🐱🐶🐰"
   }, []);
 
   function delay() {
