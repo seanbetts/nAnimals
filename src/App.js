@@ -228,8 +228,6 @@ function App() {
           </s.Slider>
           <s.SpacerLarge />
           <s.SpacerSmall />
-          <s.TextSubTitle>WE'RE CURRENTLY AWARE OF A BUG WITH METAMASK THAT IS CAUSING SOME MINTING TRANSACTIONS TO FAIL. IF THIS HAPPENS PLEASE TRY A FEW MORE TIMES WHILST WE RESOLVE THE ISSUE WITH THE METAMASK TEAM. THANK YOU FOR YOUR PATIENCE AND SUPPORT!</s.TextSubTitle>
-          <s.SpacerSmall />
 
           {/* eslint-disable-next-line  */}
           {data.mintingPaused == false ? 
