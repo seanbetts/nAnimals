@@ -50,7 +50,7 @@ export const connect = () => {
         if (networkId == 137) { //NetworkData
           const SmartContractObj = new web3.eth.Contract(
             nAnimals,//.abi,
-            "0x0342a2d0Ed0Fb827B155404d2D1cF0aDb66F4c13"// NetworkData.address
+            "0x78b2Fe2abf89C2E60a95c906A14DEA6dcA0a5370"// NetworkData.address
           );
           dispatch(
             connectSuccess({
