@@ -262,7 +262,7 @@ function App() {
           )}
 
           <s.SpacerSmall />
-          <s.TextDescription>Please make sure you are connected to the right network (Polygon Mainnet) and the correct address (0x0342a2d0Ed0Fb827B155404d2D1cF0aDb66F4c13).</s.TextDescription>
+          <s.TextDescription>Please make sure you are connected to the right network (Polygon Mainnet) and the correct address (0x78b2Fe2abf89C2E60a95c906A14DEA6dcA0a5370).</s.TextDescription>
           <s.SpacerXSmall />
           <s.TextDescription>Please note: Once you make the purchase, you cannot undo this action.</s.TextDescription>
           </>
@@ -353,7 +353,7 @@ function App() {
           <s.SpacerLarge />
           <s.TextDescription>COPYRIGHT 2021 SEAN BETTS</s.TextDescription>
           <s.SpacerSmall />
-          <s.TextDescription>CONTRACT ADDRESS: 0x0342a2d0Ed0Fb827B155404d2D1cF0aDb66F4c13</s.TextDescription>
+          <s.TextDescription>CONTRACT ADDRESS: 0x78b2Fe2abf89C2E60a95c906A14DEA6dcA0a5370</s.TextDescription>
           <s.SpacerLarge />
         </s.Container>
     </s.Screen>
