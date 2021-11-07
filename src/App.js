@@ -149,7 +149,7 @@ function App() {
             <s.Container>
               <s.NFTContainerBar>
                 <s.SpacerLarge />
-                <s.TextTitle2>YOUR nEGG COLLECTION</s.TextTitle2>
+                <s.TextTitle2>YOUR nEGGs COLLECTION</s.TextTitle2>
                 <s.SpacerSmall />
                 <s.TextSubTitle2>PLEASE SELECT ONE OF YOUR nEGGs TO HATCH:</s.TextSubTitle2>
                 <s.NFTContainer>
@@ -220,7 +220,8 @@ function App() {
                 <s.SpacerLarge />
                 <s.NFTContainerBar>
                   <s.SpacerLarge />
-                  <s.TextTitle2>YOUR nANIMAL COLLECTION</s.TextTitle2>
+                  <s.TextTitle2>YOUR nANIMALs COLLECTION</s.TextTitle2>
+                  <s.SpacerSmall />
                   <s.NFTContainer>
                     {data.loading ? (
                     <>
@@ -244,7 +245,7 @@ function App() {
                       })
                     )}
                   </s.NFTContainer>
-                  <s.SpacerLarge />
+                  <s.SpacerSmall />
                 </s.NFTContainerBar>
               </s.Container>  
             }
