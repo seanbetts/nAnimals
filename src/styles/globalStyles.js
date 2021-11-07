@@ -274,6 +274,18 @@ export const NFTSContainer = styled.div`
   }
 `;
 
+export const NFTSContainer2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 220px;
+  height: 260px;
+  align-items: ${({ ai }) => (ai ? ai : "center")};
+  background-color: var(--dirtywhite);
+  margin: 10px;
+  padding: 10px;
+`;
+
 export const Slider = styled.div`
   width: 400px;
 `;

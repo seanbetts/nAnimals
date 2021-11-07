@@ -29,7 +29,6 @@ function App() {
 
   const hatch = (tokenNumber) => {
     setLoading(true);
-    console.log(tokenNumber);
 
     blockchain.smartContract.methods
       .hatch(tokenNumber)
@@ -149,10 +148,10 @@ function App() {
           {NFTS.length>0 &&
             <s.Container>
               <s.NFTContainerBar>
-              <s.SpacerLarge />
-              <s.TextTitle2>YOUR nEGG & nANIMAL COLLECTION</s.TextTitle2>
-              <s.SpacerSmall />
-              <s.TextSubTitle2>PLEASE SELECT ONE OF YOUR nEGGs TO HATCH:</s.TextSubTitle2>
+                <s.SpacerLarge />
+                <s.TextTitle2>YOUR nEGG COLLECTION</s.TextTitle2>
+                <s.SpacerSmall />
+                <s.TextSubTitle2>PLEASE SELECT ONE OF YOUR nEGGs TO HATCH:</s.TextSubTitle2>
                 <s.NFTContainer>
                   {data.loading ? (
                   <>
@@ -160,7 +159,8 @@ function App() {
                   </>
                   ) : (
                     NFTS.map((nft, index) => {
-                      return(
+                      if (nft.metaData.name.includes("nEGG")) 
+                        return(
                           <s.NFTSContainer key={index}>
                             <img 
                               alt={nft.metaData.name}
@@ -174,58 +174,87 @@ function App() {
                             <s.SpacerSmall />
                             <s.TextSubTitle>{nft.metaData.name}</s.TextSubTitle>
                           </s.NFTSContainer>
-                      );
+                        );
+                      else return null
                     })
                   )}
                 </s.NFTContainer>
-              
-          {/* eslint-disable-next-line  */}
-          {data.hatchingActive == true ? 
-          (
-          <s.StyledButton3
-            onClick={(e) => {
-              e.preventDefault();
-              hatch(nEGG);
-            }}
-          >          
-          {loading ? (
-            <>
-            <s.ButtonName>hatching nEGG #{nEGG+1}...</s.ButtonName>
-            </>
-          ) : (
-          status !== "" ? (
-                <>
-                <s.ButtonName>{status}</s.ButtonName>
-                </>
-            ) : (<s.ButtonName>HATCH nEGG #{nEGG+1}</s.ButtonName>)
-          )}
-          </s.StyledButton3>
-          ) : 
-          (
-            <s.StyledButton2
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-          >
-            <s.ButtonName>HATCHING PAUSED</s.ButtonName>
-          </s.StyledButton2>
-          )}
+            {/* eslint-disable-next-line  */}
+            {data.hatchingActive == true ? 
+            (
+            <s.StyledButton3
+              onClick={(e) => {
+                e.preventDefault();
+                hatch(nEGG);
+              }}
+            >          
+            {loading ? (
+              <>
+              <s.ButtonName>hatching nEGG #{nEGG+1}...</s.ButtonName>
+              </>
+            ) : (
+            status !== "" ? (
+                  <>
+                  <s.ButtonName>{status}</s.ButtonName>
+                  </>
+              ) : (<s.ButtonName>HATCH nEGG #{nEGG+1}</s.ButtonName>)
+            )}
+            </s.StyledButton3>
+            ) : 
+            (
+              <s.StyledButton2
+              onClick={(e) => {
+                e.preventDefault();
+              }}
+            >
+              <s.ButtonName>HATCHING PAUSED</s.ButtonName>
+            </s.StyledButton2>
+            )}
 
-          <s.SpacerSmall />
-          <s.TextDescription4>Please make sure you are connected to the right network (Polygon Mainnet) and the correct address (0x0342a2d0Ed0Fb827B155404d2D1cF0aDb66F4c13).</s.TextDescription4>
-          <s.SpacerXSmall />
-          <s.TextDescription4>Please note: Once you make the purchase, you cannot undo this action.</s.TextDescription4>
-          <s.SpacerLarge />
+            <s.SpacerSmall />
+            <s.TextDescription4>Please make sure you are connected to the right network (Polygon Mainnet) and the correct address (0x0342a2d0Ed0Fb827B155404d2D1cF0aDb66F4c13).</s.TextDescription4>
+            <s.SpacerXSmall />
+            <s.TextDescription4>Please note: Once you make the purchase, you cannot undo this action.</s.TextDescription4>
+            <s.SpacerLarge />
           </s.NFTContainerBar>
-            </s.Container>
-            
-          }
-        </s.Container>
+                <s.SpacerLarge />
+                <s.NFTContainerBar>
+                  <s.SpacerLarge />
+                  <s.TextTitle2>YOUR nANIMAL COLLECTION</s.TextTitle2>
+                  <s.NFTContainer>
+                    {data.loading ? (
+                    <>
+                      <s.TextDescription2>loading...</s.TextDescription2>
+                    </>
+                ) : (
+                        NFTS.map((nft, index) => {
+                          if (nft.metaData.name.includes("nANIMAL")) 
+                            return(
+                              <s.NFTSContainer2 key={index}>
+                                <img 
+                                  alt={nft.metaData.name}
+                                  src={nft.metaData.image.replace('ipfs://', 'https://nanimals.mypinata.cloud/ipfs/')} 
+                                  width={200}
+                                />
+                                <s.SpacerSmall />
+                                <s.TextSubTitle>{nft.metaData.name}</s.TextSubTitle>
+                              </s.NFTSContainer2>
+                            );
+                          else return null
+                      })
+                    )}
+                  </s.NFTContainer>
+                  <s.SpacerLarge />
+                </s.NFTContainerBar>
+              </s.Container>  
+            }
+          </s.Container>
         )}
+
         <s.SpacerLarge />
         <s.NFTContainerBar>
-        <s.SpacerLarge />
-        <s.TextTitle2>ABOUT</s.TextTitle2>
+          <s.SpacerLarge />
+          <s.TextTitle2>ABOUT</s.TextTitle2>
           <s.SpacerXSmall />
           <s.TextDescription3>nANIMALs is a new generative NFT art project living on the Ethereum-compatible Polygon Proof of Stake (POS) Network.</s.TextDescription3>
           <s.SpacerSmall />
@@ -238,8 +267,8 @@ function App() {
         </s.NFTContainerBar>
         <s.SpacerLarge />
         <s.NFTContainerBar>
-        <s.SpacerLarge />
-        <s.TextTitle2>WHAT IS IT?</s.TextTitle2>
+          <s.SpacerLarge />
+          <s.TextTitle2>WHAT IS IT?</s.TextTitle2>
           <s.SpacerXSmall />
           <s.TextDescription3>Every nANIMAL starts off as a nEGG. On hatching from it's nEGG, each nANIMAL is autogenerated from over 50+ intial features and is completely unique.</s.TextDescription3>
           <s.SpacerXSmall />
@@ -250,7 +279,7 @@ function App() {
         </s.NFTContainerBar>
         <s.SpacerLarge />
         <s.NFTContainerBar>
-        <s.SpacerLarge />
+          <s.SpacerLarge />
           <s.TextTitle2>ROADMAP</s.TextTitle2>
           <s.SpacerXSmall />
           <s.TextSubTitle3>STEP 1</s.TextSubTitle3>
@@ -258,7 +287,7 @@ function App() {
           <s.SpacerLarge />
           <s.TextSubTitle3>STEP 2</s.TextSubTitle3>
           <s.TextDescription3>Once all {data.maxMintSupply} nEGGs have been minted, the countdown will begin for the hatching of the 1st generation of nANIMALs. All original minters of nEggs will be given the "<span role="img" aria-labelledby="egg">🥚</span>│OG nEGG" role and have exclusive access to new channels on the Discord server.</s.TextDescription3>
-           <s.SpacerLarge />
+          <s.SpacerLarge />
           <s.TextSubTitle3>STEP 3</s.TextSubTitle3>
           <s.TextDescription3>Once the countdown is over it's Hatching Time! Hatching 1 nEGG will cost {data.hatchPrice/1000000000000000000} MATIC and will hatch 1 nANIMAL.</s.TextDescription3>
           <s.SpacerXSmall />
