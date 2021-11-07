@@ -71,6 +71,7 @@ export const connect = () => {
           dispatch(connectFailed("Please change your wallet to the Polygon network"));
         }
       } catch (err) {
+        console.log(err);
         dispatch(connectFailed("Something went wrong, please try again"));
       }
     } else {
