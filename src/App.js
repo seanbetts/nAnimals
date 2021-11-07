@@ -30,27 +30,27 @@ function App() {
     setLoading(true);
     console.log(tokenNumber);
 
-    // blockchain.smartContract.methods
-    //   .mint(tokenNumber)
-    //   .send({
-    //     gasLimit: (285000 * tokenNumber).toString(),
-    //     to: data.owner,
-    //     from: blockchain.account,
-    //     value: blockchain.web3.utils.toWei((data.mintPrice/1000000000000000000 * tokenNumber).toString(), "ether"),
-    //   })
-    //   .once("error", (err) => {
-    //     console.log(err);
-    //     setLoading(false);
-    //     setStatus("ERROR - TRY HATCHING AGAIN!");
-    //     delay();
-    //   })
-    //   .then((receipt) => {
-    //     console.log(receipt);
-    //     dispatch(fetchData(blockchain.account));
-    //     setLoading(false);
-    //     setStatus("nEGG SUCCESSFULLY HATCHED!");
-    //     delay();
-    //   });
+    blockchain.smartContract.methods
+      .hatch(tokenNumber)
+      .send({
+        gasLimit: (285000 * tokenNumber).toString(),
+        to: data.owner,
+        from: blockchain.account,
+        value: blockchain.web3.utils.toWei((data.hatchPrice/1000000000000000000 * tokenNumber).toString(), "ether"),
+      })
+      .once("error", (err) => {
+        console.log(err);
+        setLoading(false);
+        setStatus("ERROR - TRY HATCHING AGAIN!");
+        delay();
+      })
+      .then((receipt) => {
+        console.log(receipt);
+        dispatch(fetchData(blockchain.account));
+        setLoading(false);
+        setStatus("nEGG SUCCESSFULLY HATCHED!");
+        delay();
+      });
   };
 
   const fetchMetaDataForNFTS = useCallback(() => {
@@ -133,7 +133,7 @@ function App() {
             <>
             <s.TextTitle>{data.totalSupply}/{data.maxMintSupply} nEGGs HATCHED</s.TextTitle>
           <s.SpacerSmall />
-          <s.TextSubTitle>nEGGs ARE {data.mintPrice/1000000000000000000} MATIC EACH TO HATCH (ex. gas fees)</s.TextSubTitle>
+          <s.TextSubTitle>nEGGs ARE {data.hatchPrice/1000000000000000000} MATIC EACH TO HATCH (ex. gas fees)</s.TextSubTitle>
           <s.SpacerSmall />
           <s.TextSubTitle>YOU CAN HATCH 1 nEGG AT A TIME</s.TextSubTitle>
           </>
@@ -173,7 +173,7 @@ function App() {
                 </s.NFTContainer>
               
           {/* eslint-disable-next-line  */}
-          {data.mintingPaused == false ? 
+          {data.hatchingActive == true ? 
           (
           <s.StyledButton3
             onClick={(e) => {
@@ -253,7 +253,7 @@ function App() {
           <s.TextDescription3>Once all {data.maxMintSupply} nEGGs have been minted, the countdown will begin for the hatching of the 1st generation of nANIMALs. All original minters of nEggs will be given the "<span role="img" aria-labelledby="egg">🥚</span>│OG nEGG" role and have exclusive access to new channels on the Discord server.</s.TextDescription3>
            <s.SpacerLarge />
           <s.TextSubTitle3>STEP 3</s.TextSubTitle3>
-          <s.TextDescription3>Once the countdown is over it's Hatching Time! Hatching 1 nEGG will cost {data.mintPrice/1000000000000000000} MATIC and will hatch 1 nANIMAL.</s.TextDescription3>
+          <s.TextDescription3>Once the countdown is over it's Hatching Time! Hatching 1 nEGG will cost {data.hatchPrice/1000000000000000000} MATIC and will hatch 1 nANIMAL.</s.TextDescription3>
           <s.SpacerXSmall />
           <s.TextDescription3>Every nANIMAL holder will be given the "<span role="img" aria-labelledby="berar">🐻</span>│nANIMAL" role and have access to new channels on the Discord server. Every generation of nANIMALs will have their own exclusive role and collection of channels on Discord that only owners of that generation will have access to.</s.TextDescription3>
           <s.SpacerXSmall />
