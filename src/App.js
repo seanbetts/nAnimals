@@ -182,6 +182,12 @@ function App() {
               <img src={twitter} height={50} width={50} alt="twitter"/>
               </a>
             </s.Column>
+            <s.SpacerSmall />
+            <s.Column>
+              <a href="https://opensea.io/collection/nanimals" target="_blank" rel="noopener noreferrer">
+              <img src={opensea} height={50} width={50} alt="opensea"/>
+              </a>
+            </s.Column>
           </s.Row>
           <s.ImageContainer>
           <img src={nEggLogo} width={400} alt="nEgg Logo"/>
