@@ -38,7 +38,7 @@ const dataReducer = (state = initialState, action) => {
         maxMintQuantity: action.payload.maxMintQuantity,
         userTokens: action.payload.userTokens,
         mintPrice: action.payload.mintPrice,
-        mintPrice: action.payload.hatchPrice,
+        hatchPrice: action.payload.hatchPrice,
         error: false,
         errorMsg: "",
       };
