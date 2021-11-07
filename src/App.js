@@ -190,7 +190,7 @@ function App() {
           >          
           {loading ? (
             <>
-            <s.ButtonName>hatching...</s.ButtonName>
+            <s.ButtonName>hatching nEGG #{nEGG+1}...</s.ButtonName>
             </>
           ) : (
           status !== "" ? (
