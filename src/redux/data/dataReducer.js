@@ -7,7 +7,7 @@ const initialState = {
   totalSupply: 0,
   mintPrice: 2000000000000000000,
   maxMintSupply: 2000,
-  maxMintQuantity: 10,
+  maxMintQuantity: 20,
   userTokens: [],
   error: false,
   errorMsg: "",
