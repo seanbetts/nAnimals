@@ -9,6 +9,7 @@ import 'rc-slider/assets/index.css';
 import nEggLogo from "./images/nEggLogoTitle.png";
 import discord from "./images/discord.png";
 import twitter from "./images/twitter.png";
+import opensea from "./images/opensea.png";
 
 function App() {
   const dispatch = useDispatch();
