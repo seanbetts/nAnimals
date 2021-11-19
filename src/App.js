@@ -358,7 +358,7 @@ function App() {
         </s.NFTContainerBar>
         <s.Container>
           <s.SpacerLarge />
-          <s.TextDescription>COPYRIGHT 2021 SEAN BETTS</s.TextDescription>
+          <s.TextDescription>COPYRIGHT 2021 KRANOS</s.TextDescription>
           <s.SpacerSmall />
           <s.TextDescription>CONTRACT ADDRESS: 0x78b2Fe2abf89C2E60a95c906A14DEA6dcA0a5370</s.TextDescription>
           <s.SpacerLarge />
