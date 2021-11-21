@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
 import nAnimalLogo from "./images/nAnimalLogo.png";
 import discord from "./images/discord.png";
 import twitter from "./images/twitter.png";
@@ -15,95 +13,8 @@ function App() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
-  const [loading, setLoading] = useState (false);
-  const [status, setStatus] = useState ("");
   var [mintNumber, setMintNumber] = useState (1);
   const [NFTS, setNFTs] = useState ([]);
-  const marks= {
-    1: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>1</strong>,
-    },
-    2: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>2</strong>,
-    },
-    3: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>3</strong>,
-    }, 
-    4: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>4</strong>,
-    },
-    5: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>5</strong>,
-    },
-    6: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>6</strong>,
-    },
-    7: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>7</strong>,
-    },
-    8: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>8</strong>,
-    },
-    9: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>9</strong>,
-    },
-    10: {
-      style: {
-        fontFamily: 'Arial',
-        fontSize: '20px',
-        color: '#FF3D94',
-      },
-      label: <strong>10</strong>,
-    }
-  }
-
-  function log(value) {
-    setMintNumber(value)
   }
 
   useEffect(() => {
@@ -113,32 +24,6 @@ function App() {
   function delay() {
     setTimeout(function(){ setStatus(""); }, 2000);
   }
-
-  const mint = (tokenNumber) => {
-    setLoading(true);
-
-    blockchain.smartContract.methods
-      .mint(tokenNumber)
-      .send({
-        gasLimit: (285000 * tokenNumber).toString(),
-        to: data.owner,
-        from: blockchain.account,
-        value: blockchain.web3.utils.toWei((data.mintPrice/1000000000000000000 * tokenNumber).toString(), "ether"),
-      })
-      .once("error", (err) => {
-        console.log(err);
-        setLoading(false);
-        setStatus("ERROR - TRY MINTING AGAIN!");
-        delay();
-      })
-      .then((receipt) => {
-        console.log(receipt);
-        dispatch(fetchData(blockchain.account));
-        setLoading(false);
-        setStatus(mintNumber + " nEGGs SUCCESSFULLY MINTED!");
-        delay();
-      });
-  };
 
   const fetchMetaDataForNFTS = useCallback(() => {
     setNFTs([]);
