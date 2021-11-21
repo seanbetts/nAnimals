@@ -214,7 +214,7 @@ function App() {
             <s.TextDescription>{blockchain.errorMsg}</s.TextDescription>
           ) : null}
         </s.Container>
-      )}
+      ) : null}
 
           <s.SpacerSmall />
           <s.TextDescription>Please make sure you are connected to the right network (Polygon Mainnet) and the correct address (0x78b2Fe2abf89C2E60a95c906A14DEA6dcA0a5370).</s.TextDescription>
