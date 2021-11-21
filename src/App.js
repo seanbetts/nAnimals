@@ -197,7 +197,7 @@ function App() {
         </s.Container>
         {blockchain.account === "" || blockchain.smartContract === null ? (
         <s.Container>
-            <s.TextSubTitle>ALL nEGGs ARE MINTED! TO SEE YOUR COLLECTION</s.TextSubTitle>
+            <s.TextSubTitle>ALL nEGGs ARE MINTED! TO SEE YOUR nEGG COLLECTION</s.TextSubTitle>
             <s.SpacerSmall />
             <s.TextSubTitle>CONNECT TO THE POLYGON NETWORK</s.TextSubTitle>
             <s.SpacerSmall />
