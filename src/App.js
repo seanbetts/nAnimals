@@ -7,6 +7,7 @@ import * as s from "./styles/globalStyles";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import nEggLogo from "./images/nEggLogoTitle.png";
+import nEggLogo from "./images/nAnimalLogo.png";
 import discord from "./images/discord.png";
 import twitter from "./images/twitter.png";
 import opensea from "./images/opensea.png";
@@ -191,13 +192,13 @@ function App() {
             </s.Column>
           </s.Row>
           <s.ImageContainer>
-          <img src={nEggLogo} width={400} alt="nEgg Logo"/>
+          <img src={nAnimalLogo} width={400} alt="nAnimal Logo"/>
           </s.ImageContainer>
           <s.SpacerLarge />
         </s.Container>
         {blockchain.account === "" || blockchain.smartContract === null ? (
         <s.Container>
-            <s.TextSubTitle>TO MINT A nEGG</s.TextSubTitle>
+            <s.TextSubTitle>ALL nEGGs ARE MINTED! TO SEE YOUR COLLECTION</s.TextSubTitle>
             <s.SpacerSmall />
             <s.TextSubTitle>CONNECT TO THE POLYGON NETWORK</s.TextSubTitle>
             <s.SpacerSmall />
