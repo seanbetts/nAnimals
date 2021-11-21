@@ -220,7 +220,7 @@ function App() {
             <>
             <s.TextTitle>ALL nEGGs ARE MINTED!</s.TextTitle>
             <s.SpacerSmall />
-            <s.TextDescription><a target={"_blank"} rel="noopener noreferrer" href={"https://opensea.io/"}>VISIT OUR OFFICIAL COLLECTION ON OPENSEA TO BUY A nEGG</a></s.TextDescription>
+            <s.TextDescription><a target={"_blank"} rel="noopener noreferrer" href={"https://opensea.io/collection/nanimals"}>VISIT OUR OFFICIAL COLLECTION ON OPENSEA TO BUY A nEGG</a></s.TextDescription>
             </>
           ) : (
             <>
