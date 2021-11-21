@@ -214,59 +214,7 @@ function App() {
             <s.TextDescription>{blockchain.errorMsg}</s.TextDescription>
           ) : null}
         </s.Container>
-      ) : (
-        <s.Container>
-          {Number(data.totalSupply) === Number(data.maxMintSupply) ? (
-            <>
-            <s.TextTitle>ALL nEGGs ARE MINTED!</s.TextTitle>
-            <s.SpacerSmall />
-            <s.TextDescription><a target={"_blank"} rel="noopener noreferrer" href={"https://opensea.io/collection/nanimals"}>VISIT OUR OFFICIAL COLLECTION ON OPENSEA TO BUY A nEGG</a></s.TextDescription>
-            </>
-          ) : (
-            <>
-            <s.TextTitle>{data.totalSupply}/{data.maxMintSupply} nEGGs MINTED</s.TextTitle>
-          <s.SpacerSmall />
-          <s.TextSubTitle>nEGGs ARE {data.mintPrice/1000000000000000000} MATIC EACH TO MINT (ex. gas fees)</s.TextSubTitle>
-          <s.SpacerLarge />
-          <s.TextSubTitle>YOU CAN MINT UP TO {data.maxMintQuantity} nEGGs PER WALLET</s.TextSubTitle>
-          <s.SpacerSmall />
-          <s.Slider>
-          <Slider dots trackStyle={{backgroundColor:'#FF3D94', height:5}} handleStyle={{backgroundColor: '#FF3D94', borderColor: '#FF3D94'}} activeDotStyle={{backgroundColor: '#FF3D94'}} dotStyle={{borderColor: '#FF3D94'}} min={1} max={10} onChange={log} defaultValue={1} marks={marks} />
-          </s.Slider>
-          <s.SpacerLarge />
-          <s.SpacerSmall />
-
-          {/* eslint-disable-next-line  */}
-          {data.mintingPaused == false ? 
-          (
-          <s.StyledButton
-            onClick={(e) => {
-              e.preventDefault();
-              mint(mintNumber);
-            }}
-          >          
-          {loading ? (
-            <>
-            <s.ButtonName>minting...</s.ButtonName>
-            </>
-          ) : (
-          status !== "" ? (
-                <>
-                <s.ButtonName>{status}</s.ButtonName>
-                </>
-            ) : (<s.ButtonName>MINT {mintNumber} nEGGs</s.ButtonName>)
-          )}
-          </s.StyledButton>
-          ) : 
-          (
-            <s.StyledButton2
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-          >
-            <s.ButtonName>MINTING PAUSED</s.ButtonName>
-          </s.StyledButton2>
-          )}
+      )}
 
           <s.SpacerSmall />
           <s.TextDescription>Please make sure you are connected to the right network (Polygon Mainnet) and the correct address (0x78b2Fe2abf89C2E60a95c906A14DEA6dcA0a5370).</s.TextDescription>
