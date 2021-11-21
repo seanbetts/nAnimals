@@ -346,7 +346,7 @@ function App() {
           <s.TextDescription3>Once all {data.maxMintSupply} nEGGs have been minted, the countdown will begin for the hatching of the 1st generation of nANIMALs. All original minters of nEggs will be given the "<span role="img" aria-labelledby="egg">🥚</span>│OG nEGG" role and have exclusive access to new channels on the Discord server.</s.TextDescription3>
            <s.SpacerLarge />
           <s.TextSubTitle3>STEP 3</s.TextSubTitle3>
-          <s.TextDescription3>Once the countdown is over it's Hatching Time! Hatching 1 nEGG will cost {data.mintPrice/1000000000000000000} MATIC and will hatch 1 nANIMAL.</s.TextDescription3>
+          <s.TextDescription3>Once the countdown is over it's Hatching Time! Hatching 1 nEGG will cost 2 MATIC and will hatch 1 nANIMAL.</s.TextDescription3>
           <s.SpacerXSmall />
           <s.TextDescription3>Every nANIMAL holder will be given the "<span role="img" aria-labelledby="berar">🐻</span>│nANIMAL" role and have access to new channels on the Discord server. Every generation of nANIMALs will have their own exclusive role and collection of channels on Discord that only owners of that generation will have access to.</s.TextDescription3>
           <s.SpacerXSmall />
