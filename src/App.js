@@ -15,7 +15,7 @@ function App() {
   const data = useSelector((state) => state.data);
   var [mintNumber, setMintNumber] = useState (1);
   const [NFTS, setNFTs] = useState ([]);
-  }
+  
 
   useEffect(() => {
     document.title = "nAnimals 🐻🐱🐶🐰"
