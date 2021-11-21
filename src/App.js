@@ -13,6 +13,7 @@ function App() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
+  const [status, setStatus] = useState ("");
   var [mintNumber, setMintNumber] = useState (1);
   const [NFTS, setNFTs] = useState ([]);
   
