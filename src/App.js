@@ -6,7 +6,6 @@ import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import nEggLogo from "./images/nEggLogoTitle.png";
 import nAnimalLogo from "./images/nAnimalLogo.png";
 import discord from "./images/discord.png";
 import twitter from "./images/twitter.png";
