@@ -14,17 +14,12 @@ function App() {
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
   const [status, setStatus] = useState ("");
-  var [mintNumber, setMintNumber] = useState (1);
   const [NFTS, setNFTs] = useState ([]);
   
 
   useEffect(() => {
     document.title = "nAnimals 🐻🐱🐶🐰"
   }, []);
-
-  function delay() {
-    setTimeout(function(){ setStatus(""); }, 2000);
-  }
 
   const fetchMetaDataForNFTS = useCallback(() => {
     setNFTs([]);
