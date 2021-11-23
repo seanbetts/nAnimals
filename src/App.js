@@ -5,7 +5,7 @@ import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import 'rc-slider/assets/index.css';
-import nEggLogo from "./images/nEggLogoTitle.png";
+import nAnimalLogo from "./images/nAnimalLogo.png";
 import discord from "./images/discord.png";
 import twitter from "./images/twitter.png";
 import opensea from "./images/opensea.png";
@@ -33,10 +33,10 @@ function App() {
     blockchain.smartContract.methods
       .hatch(tokenNumber)
       .send({
-        gasLimit: (285000 * tokenNumber).toString(),
+        gasLimit: (285000).toString(),
         to: data.owner,
         from: blockchain.account,
-        value: blockchain.web3.utils.toWei((data.hatchPrice/1000000000000000000 * tokenNumber).toString(), "ether"),
+        value: blockchain.web3.utils.toWei((data.hatchPrice/1000000000000000000).toString(), "ether"),
       })
       .once("error", (err) => {
         console.log(err);
@@ -104,13 +104,13 @@ function App() {
             </s.Column>
           </s.Row>
           <s.ImageContainer>
-          <img src={nEggLogo} width={400} alt="nEgg Logo"/>
+          <img src={nAnimalLogo} width={400} alt="nAnimal Logo"/>
           </s.ImageContainer>
           <s.SpacerLarge />
         </s.Container>
         {blockchain.account === "" || blockchain.smartContract === null ? (
         <s.Container>
-            <s.TextSubTitle>TO HATCH A nEGG</s.TextSubTitle>
+            <s.TextSubTitle>ALL nEGGs ARE MINTED! TO SEE YOUR nEGG COLLECTION</s.TextSubTitle>
             <s.SpacerSmall />
             <s.TextSubTitle>CONNECT TO THE POLYGON NETWORK</s.TextSubTitle>
             <s.SpacerSmall />
@@ -122,7 +122,6 @@ function App() {
             >
                 <s.ButtonName>CONNECT</s.ButtonName>
           </s.StyledButton>
-          <s.SpacerSmall />
           {blockchain.errorMsg !== "" ? (
             <s.TextDescription>{blockchain.errorMsg}</s.TextDescription>
           ) : null}
@@ -131,18 +130,12 @@ function App() {
         <s.Container>
           {Number(data.totalSupply) === Number(data.maxMintSupply) ? (
             <>
-            <s.TextTitle>ALL nEGGs ARE HATCHED!</s.TextTitle>
+            <s.TextTitle>ALL nEGGs ARE MINTED!</s.TextTitle>
             <s.SpacerSmall />
-            <s.TextDescription><a target={"_blank"} rel="noopener noreferrer" href={"https://opensea.io/nanimals"}>VISIT OUR OFFICIAL COLLECTION ON OPENSEA TO BUY A nEGG</a></s.TextDescription>
+            <s.TextDescription><a target={"_blank"} rel="noopener noreferrer" href={"https://opensea.io/collection/nanimals"}>VISIT OUR OFFICIAL COLLECTION ON OPENSEA TO BUY A nEGG</a></s.TextDescription>
             </>
           ) : (
-            <>
-            <s.TextTitle>{data.totalSupply}/{data.maxMintSupply} nEGGs HATCHED</s.TextTitle>
-          <s.SpacerSmall />
-          <s.TextSubTitle>nEGGs ARE {data.hatchPrice/1000000000000000000} MATIC EACH TO HATCH (ex. gas fees)</s.TextSubTitle>
-          <s.SpacerSmall />
-          <s.TextSubTitle>YOU CAN HATCH 1 nEGG AT A TIME</s.TextSubTitle>
-          </>
+            null
           )}
           <s.SpacerMedium />
           {NFTS.length>0 &&
@@ -150,6 +143,8 @@ function App() {
               <s.NFTContainerBar>
                 <s.SpacerLarge />
                 <s.TextTitle2>YOUR nEGGs COLLECTION</s.TextTitle2>
+                <s.SpacerSmall />
+                <s.TextSubTitle2>EACH nEGG IS 2 MATIC TO HATCH</s.TextSubTitle2>
                 <s.SpacerSmall />
                 <s.TextSubTitle2>PLEASE SELECT ONE OF YOUR nEGGs TO HATCH:</s.TextSubTitle2>
                 <s.NFTContainer>
@@ -202,17 +197,17 @@ function App() {
             </s.StyledButton3>
             ) : 
             (
-              <s.StyledButton2
+              <s.StyledButton3
               onClick={(e) => {
                 e.preventDefault();
               }}
             >
               <s.ButtonName>HATCHING PAUSED</s.ButtonName>
-            </s.StyledButton2>
+            </s.StyledButton3>
             )}
 
             <s.SpacerSmall />
-            <s.TextDescription4>Please make sure you are connected to the right network (Polygon Mainnet) and the correct address (0x0342a2d0Ed0Fb827B155404d2D1cF0aDb66F4c13).</s.TextDescription4>
+            <s.TextDescription4>Please make sure you are connected to the right network (Polygon Mainnet) and the correct address (0x78b2Fe2abf89C2E60a95c906A14DEA6dcA0a5370).</s.TextDescription4>
             <s.SpacerXSmall />
             <s.TextDescription4>Please note: Once you make the purchase, you cannot undo this action.</s.TextDescription4>
             <s.SpacerLarge />
@@ -302,9 +297,9 @@ function App() {
         </s.NFTContainerBar>
         <s.Container>
           <s.SpacerLarge />
-          <s.TextDescription>COPYRIGHT 2021 SEAN BETTS</s.TextDescription>
+          <s.TextDescription>COPYRIGHT 2021 KRANOS</s.TextDescription>
           <s.SpacerSmall />
-          <s.TextDescription>CONTRACT ADDRESS: 0x0342a2d0Ed0Fb827B155404d2D1cF0aDb66F4c13</s.TextDescription>
+          <s.TextDescription>CONTRACT ADDRESS: 0x78b2Fe2abf89C2E60a95c906A14DEA6dcA0a5370</s.TextDescription>
           <s.SpacerLarge />
         </s.Container>
     </s.Screen>
