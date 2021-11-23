@@ -8,7 +8,7 @@ async function main() {
     console.log("Account balance:", (await deployer.getBalance()).toString());
   
     const Token = await ethers.getContractFactory("nAnimals");
-    const token = await Token.deploy("https://nanimals.mypinata.cloud/ipfs/QmV8x3WBkmPdWcFi1mR4fgvaq7WFvB3NGSU5Pv1e167HbT/");
+    const token = await Token.deploy("https://nanimals.mypinata.cloud/ipfs/QmX4fuBn6gEPqYsuWkXfLYMTveVPTMQ3wkP2hSjQUNCgBN/");
   
     console.log("Token address:", token.address);
   }

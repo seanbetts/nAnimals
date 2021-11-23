@@ -45,12 +45,11 @@ export const connect = () => {
         const networkId = await ethereum.request({
           method: "net_version",
         });
-        // const NetworkData = await nAnimals.networks[networkId];
         // eslint-disable-next-line 
-        if (networkId == 137) { //NetworkData
+        if (networkId == 137) { //137 for Polygon, 80001 for Mumbai
           const SmartContractObj = new web3.eth.Contract(
-            nAnimals,//.abi,
-            "0x78b2Fe2abf89C2E60a95c906A14DEA6dcA0a5370"// NetworkData.address
+            nAnimals,
+            "0x78b2Fe2abf89C2E60a95c906A14DEA6dcA0a5370" //0x78b2Fe2abf89C2E60a95c906A14DEA6dcA0a5370 for Polygon, 0x7c5e23adb9c12be3bce9227ce52a42abfeecb3cd for Mumbai
           );
           dispatch(
             connectSuccess({
@@ -72,6 +71,7 @@ export const connect = () => {
           dispatch(connectFailed("Please change your wallet to the Polygon network"));
         }
       } catch (err) {
+        console.log(err);
         dispatch(connectFailed("Something went wrong, please try again"));
       }
     } else {

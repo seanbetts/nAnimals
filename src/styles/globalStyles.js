@@ -142,6 +142,17 @@ export const TextDescription3 = styled.p`
   line-height: 1.15;
 `;
 
+export const TextDescription4 = styled.p`
+  font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif; 
+  color: var(--black);
+  font-size: 14px;
+  font-weight: 500;
+  width: 90%;
+  max-width: 750px;
+  text-align: center;
+  line-height: 1.15;
+`;
+
 export const StyledClickable = styled.div`
   :active {
     opacity: 0.6;
@@ -184,6 +195,29 @@ export const StyledButton2 = styled.button`
   margin: 10px 0px;
 `;
 
+export const StyledButton3 = styled.button`
+  background-color: var(--blue);
+  color: black;
+  border: none;
+  width: 350px;
+  font-size: 18px;
+  font-weight: 1000;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0px;
+  cursor: pointer;
+  :hover {
+    background-color: var(--blue);
+    box-shadow: 0 9px var(--purple);
+  }
+  :active {
+    background-color: var(--blue);
+    box-shadow: 0 5px var(--purple);
+    transform: translateY(4px);
+  }
+`;
+
 export const ButtonName = styled.div`
   font-family: Monaco, Tahoma, Arial, Helvetica, sans-serif;  
   font-size: 18px;
@@ -223,6 +257,24 @@ export const NFTContainer = styled.div`
 `;
 
 export const NFTSContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 220px;
+  height: 260px;
+  align-items: ${({ ai }) => (ai ? ai : "center")};
+  background-color: var(--dirtywhite);
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+  :hover {
+    background-color: var(--teal);
+    padding: 6px;
+    border: 4px solid var(--purple);
+  }
+`;
+
+export const NFTSContainer2 = styled.div`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;

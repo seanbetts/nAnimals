@@ -21,7 +21,7 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
     uint256 public hatchPrice = 2 ether;
     uint256 public maxMintSupply = 2000;
     uint256 public genStart;
-    uint256 public maxMintQuantity = 10;
+    uint256 public maxMintQuantity = 20;
     bool public hatchingActive = false;
     Counters.Counter _tokenIds;
     
@@ -55,7 +55,6 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
             require(supply + _mintQuantity <= maxMintSupply, "You're trying to mint more nEGGs than we have left!");
             if (msg.sender != owner()) {
                 if(inclusionlisted[msg.sender] != true) {
-                    require(msg.sender.balance >= mintCost, "Your wallet doesn't have enough MATIC for your transaction");
                     require(msg.value >= mintCost, "You haven't sent enough MATIC in the transaction to mint your nEGGs");
                 }
             }
@@ -81,7 +80,6 @@ contract nAnimals is ERC721, ERC721Enumerable, ReentrancyGuard, Ownable, Pausabl
             require(_msgSender() == ownerOf(tokenId), "You don't own this nEGG");
             if (msg.sender != owner()) {
                 if(inclusionlisted[msg.sender] != true) {
-                    require(msg.sender.balance >= hatchPrice, "Your wallet doesn't have enough MATIC for your transaction");
                     require(msg.value >= hatchPrice, "You haven't sent enough MATIC in the transaction to hatch your nEGG");
                 }
             }
