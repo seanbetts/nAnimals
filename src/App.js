@@ -110,9 +110,11 @@ function App() {
         </s.Container>
         {blockchain.account === "" || blockchain.smartContract === null ? (
         <s.Container>
-            <s.TextSubTitle>ALL nEGGs ARE MINTED! TO SEE YOUR nEGG COLLECTION</s.TextSubTitle>
+            <s.TextTitle>ALL nEGGs ARE MINTED!</s.TextTitle>
             <s.SpacerSmall />
-            <s.TextSubTitle>CONNECT TO THE POLYGON NETWORK</s.TextSubTitle>
+            <s.TextSubTitle>VISIT OUR OFFICIAL COLLECTION ON <a target={"_blank"} rel="noopener noreferrer" href={"https://opensea.io/collection/nanimals"}>OPENSEA</a> TO BUY A nEGG </s.TextSubTitle>
+            <s.SpacerLarge />
+            <s.TextSubTitle>TO SEE YOUR nEGG COLLECTION PLEASE CONNECT TO THE POLYGON NETWORK</s.TextSubTitle>
             <s.SpacerSmall />
             <s.StyledButton
                 onClick={(e) => {
