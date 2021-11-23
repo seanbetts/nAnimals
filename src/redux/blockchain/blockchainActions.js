@@ -46,10 +46,10 @@ export const connect = () => {
           method: "net_version",
         });
         // eslint-disable-next-line 
-        if (networkId == 80001) { //137 for Polygon, 80001 for Mumbai
+        if (networkId == 137) { //137 for Polygon, 80001 for Mumbai
           const SmartContractObj = new web3.eth.Contract(
             nAnimals,
-            "0x7c5e23adb9c12be3bce9227ce52a42abfeecb3cd" //0x78b2Fe2abf89C2E60a95c906A14DEA6dcA0a5370 for Polygon, 0x7c5e23adb9c12be3bce9227ce52a42abfeecb3cd for Mumbai
+            "0x78b2Fe2abf89C2E60a95c906A14DEA6dcA0a5370" //0x78b2Fe2abf89C2E60a95c906A14DEA6dcA0a5370 for Polygon, 0x7c5e23adb9c12be3bce9227ce52a42abfeecb3cd for Mumbai
           );
           dispatch(
             connectSuccess({
